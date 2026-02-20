@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "firmament-gametest",
+	"id": "notfirmament-gametest",
 	"version": "1.0.0",
-	"name": "Firmament Game Tests",
+	"name": "notFirmament Game Tests",
 	"environment": "*",
 	"entrypoints": {
 		"fabric-gametest": [
