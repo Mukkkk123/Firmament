@@ -49,7 +49,7 @@ import moe.nea.firmament.util.tr
 
 object Firmament {
 	val modContainer by lazy { FabricLoader.getInstance().getModContainer(MOD_ID).get() }
-	const val MOD_ID = "firmament"
+	const val MOD_ID = "notfirmament"
 
 	val DEBUG = System.getProperty("firmament.debug") == "true"
 	val DATA_DIR: Path = Path.of(".firmament").also { Files.createDirectories(it) }
