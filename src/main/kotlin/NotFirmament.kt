@@ -49,7 +49,7 @@ import moe.nea.notfirmament.util.tr
 
 object NotFirmament {
 	val modContainer by lazy { FabricLoader.getInstance().getModContainer(MOD_ID).get() }
-	const val MOD_ID = "notfirmament"
+	const val MOD_ID = "f1"
 
 	val DEBUG = System.getProperty("notfirmament.debug") == "true"
 	val DATA_DIR: Path = Path.of(".notfirmament").also { Files.createDirectories(it) }
