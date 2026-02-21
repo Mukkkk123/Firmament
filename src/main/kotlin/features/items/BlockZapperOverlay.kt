@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.items
+package moe.nea.notfirmament.features.items
 
 import io.github.notenoughupdates.moulconfig.ChromaColour
 import java.util.LinkedList
@@ -8,15 +8,15 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.HitResult
 import net.minecraft.core.BlockPos
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.WorldKeyboardEvent
-import moe.nea.firmament.events.WorldRenderLastEvent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.render.RenderInWorldContext
-import moe.nea.firmament.util.skyBlockId
-import moe.nea.firmament.util.skyblock.SkyBlockItems
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.WorldKeyboardEvent
+import moe.nea.notfirmament.events.WorldRenderLastEvent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.render.RenderInWorldContext
+import moe.nea.notfirmament.util.skyBlockId
+import moe.nea.notfirmament.util.skyblock.SkyBlockItems
 
 object BlockZapperOverlay {
 	val identifier: String

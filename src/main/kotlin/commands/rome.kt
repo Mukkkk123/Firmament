@@ -1,4 +1,4 @@
-package moe.nea.firmament.commands
+package moe.nea.notfirmament.commands
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.IntegerArgumentType
@@ -10,43 +10,43 @@ import net.minecraft.commands.CommandBuildContext
 import net.minecraft.nbt.NbtOps
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.ComponentSerialization
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.apis.UrsaManager
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.events.FirmamentEventBus
-import moe.nea.firmament.features.debug.DebugLogger
-import moe.nea.firmament.features.debug.DeveloperFeatures
-import moe.nea.firmament.features.debug.PowerUserTools
-import moe.nea.firmament.features.inventory.buttons.InventoryButtons
-import moe.nea.firmament.features.inventory.storageoverlay.StorageOverlayScreen
-import moe.nea.firmament.features.inventory.storageoverlay.StorageOverviewScreen
-import moe.nea.firmament.features.mining.MiningBlockInfoUi
-import moe.nea.firmament.gui.config.AllConfigsGui
-import moe.nea.firmament.gui.config.BooleanHandler
-import moe.nea.firmament.gui.config.ManagedOption
-import moe.nea.firmament.init.MixinPlugin
-import moe.nea.firmament.repo.HypixelStaticData
-import moe.nea.firmament.repo.ItemCache
-import moe.nea.firmament.repo.RepoDownloadManager
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.util.FirmFormatters
-import moe.nea.firmament.util.FirmFormatters.debugPath
-import moe.nea.firmament.util.FirmFormatters.formatBool
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.SBData
-import moe.nea.firmament.util.ScreenUtil
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.accessors.messages
-import moe.nea.firmament.util.asBazaarStock
-import moe.nea.firmament.util.collections.InstanceList
-import moe.nea.firmament.util.collections.WeakCache
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.mc.SNbtFormatter
-import moe.nea.firmament.util.tr
-import moe.nea.firmament.util.unformattedString
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.apis.UrsaManager
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.events.NotFirmamentEventBus
+import moe.nea.notfirmament.features.debug.DebugLogger
+import moe.nea.notfirmament.features.debug.DeveloperFeatures
+import moe.nea.notfirmament.features.debug.PowerUserTools
+import moe.nea.notfirmament.features.inventory.buttons.InventoryButtons
+import moe.nea.notfirmament.features.inventory.storageoverlay.StorageOverlayScreen
+import moe.nea.notfirmament.features.inventory.storageoverlay.StorageOverviewScreen
+import moe.nea.notfirmament.features.mining.MiningBlockInfoUi
+import moe.nea.notfirmament.gui.config.AllConfigsGui
+import moe.nea.notfirmament.gui.config.BooleanHandler
+import moe.nea.notfirmament.gui.config.ManagedOption
+import moe.nea.notfirmament.init.MixinPlugin
+import moe.nea.notfirmament.repo.HypixelStaticData
+import moe.nea.notfirmament.repo.ItemCache
+import moe.nea.notfirmament.repo.RepoDownloadManager
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.util.FirmFormatters
+import moe.nea.notfirmament.util.FirmFormatters.debugPath
+import moe.nea.notfirmament.util.FirmFormatters.formatBool
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.SBData
+import moe.nea.notfirmament.util.ScreenUtil
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.accessors.messages
+import moe.nea.notfirmament.util.asBazaarStock
+import moe.nea.notfirmament.util.collections.InstanceList
+import moe.nea.notfirmament.util.collections.WeakCache
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.mc.SNbtFormatter
+import moe.nea.notfirmament.util.tr
+import moe.nea.notfirmament.util.unformattedString
 
 
-fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
+fun notfirmamentCommand(ctx: CommandBuildContext) = literal("notfirmament") {
 	thenLiteral("config") {
 		thenExecute {
 			AllConfigsGui.showAllGuis()
@@ -72,7 +72,7 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 						if (configObj == null) {
 							source.sendFeedback(
 								Component.translatableEscape(
-									"firmament.command.toggle.no-config-found",
+									"notfirmament.command.toggle.no-config-found",
 									config
 								)
 							)
@@ -81,13 +81,13 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 						val propertyObj = configObj.allOptions[property]
 						if (propertyObj == null) {
 							source.sendFeedback(
-								Component.translatableEscape("firmament.command.toggle.no-property-found", property)
+								Component.translatableEscape("notfirmament.command.toggle.no-property-found", property)
 							)
 							return@thenExecute
 						}
 						if (propertyObj.handler !is BooleanHandler) {
 							source.sendFeedback(
-								Component.translatableEscape("firmament.command.toggle.not-a-toggle", property)
+								Component.translatableEscape("notfirmament.command.toggle.not-a-toggle", property)
 							)
 							return@thenExecute
 						}
@@ -96,9 +96,9 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 						configObj.markDirty()
 						source.sendFeedback(
 							Component.translatableEscape(
-								"firmament.command.toggle.toggled", configObj.labelText,
+								"notfirmament.command.toggle.toggled", configObj.labelText,
 								propertyObj.labelText,
-								Component.translatable("firmament.toggle.${propertyObj.value}")
+								Component.translatable("notfirmament.toggle.${propertyObj.value}")
 							)
 						)
 					}
@@ -140,7 +140,7 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 			thenArgument("prnum", IntegerArgumentType.integer(1)) { prnum ->
 				thenExecute {
 					val prnum = this[prnum]
-					source.sendFeedback(tr("firmament.repo.reload.pr", "Temporarily reloading repo from PR #${prnum}."))
+					source.sendFeedback(tr("notfirmament.repo.reload.pr", "Temporarily reloading repo from PR #${prnum}."))
 					RepoManager.downloadOverridenBranch("refs/pull/$prnum/head")
 				}
 			}
@@ -148,13 +148,13 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 		thenLiteral("reload") {
 			thenLiteral("fetch") {
 				thenExecute {
-					source.sendFeedback(Component.translatable("firmament.repo.reload.network")) // TODO better reporting
+					source.sendFeedback(Component.translatable("notfirmament.repo.reload.network")) // TODO better reporting
 					RepoManager.launchAsyncUpdate()
 				}
 			}
 			thenExecute {
-				source.sendFeedback(Component.translatable("firmament.repo.reload.disk"))
-				Firmament.coroutineScope.launch { RepoManager.reload() }
+				source.sendFeedback(Component.translatable("notfirmament.repo.reload.disk"))
+				NotFirmament.coroutineScope.launch { RepoManager.reload() }
 			}
 		}
 	}
@@ -163,34 +163,34 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 			suggestsList { RepoManager.neuRepo.items.items.keys }
 			thenExecute {
 				val itemName = SkyblockId(get(item))
-				source.sendFeedback(Component.translatableEscape("firmament.price", itemName.neuItem))
+				source.sendFeedback(Component.translatableEscape("notfirmament.price", itemName.neuItem))
 				val bazaarData = HypixelStaticData.bazaarData[itemName.asBazaarStock]
 				if (bazaarData != null) {
-					source.sendFeedback(Component.translatable("firmament.price.bazaar"))
+					source.sendFeedback(Component.translatable("notfirmament.price.bazaar"))
 					source.sendFeedback(
-						Component.translatableEscape("firmament.price.bazaar.productid", bazaarData.productId.bazaarId)
+						Component.translatableEscape("notfirmament.price.bazaar.productid", bazaarData.productId.bazaarId)
 					)
 					source.sendFeedback(
 						Component.translatableEscape(
-							"firmament.price.bazaar.buy.price",
+							"notfirmament.price.bazaar.buy.price",
 							FirmFormatters.formatCommas(bazaarData.quickStatus.buyPrice, 1)
 						)
 					)
 					source.sendFeedback(
 						Component.translatableEscape(
-							"firmament.price.bazaar.buy.order",
+							"notfirmament.price.bazaar.buy.order",
 							bazaarData.quickStatus.buyOrders
 						)
 					)
 					source.sendFeedback(
 						Component.translatableEscape(
-							"firmament.price.bazaar.sell.price",
+							"notfirmament.price.bazaar.sell.price",
 							FirmFormatters.formatCommas(bazaarData.quickStatus.sellPrice, 1)
 						)
 					)
 					source.sendFeedback(
 						Component.translatableEscape(
-							"firmament.price.bazaar.sell.order",
+							"notfirmament.price.bazaar.sell.order",
 							bazaarData.quickStatus.sellOrders
 						)
 					)
@@ -199,7 +199,7 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 				if (lowestBin != null) {
 					source.sendFeedback(
 						Component.translatableEscape(
-							"firmament.price.lowestbin",
+							"notfirmament.price.lowestbin",
 							FirmFormatters.formatCommas(lowestBin, 1)
 						)
 					)
@@ -271,18 +271,18 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 		}
 		thenLiteral("sbdata") {
 			thenExecute {
-				source.sendFeedback(Component.translatableEscape("firmament.sbinfo.profile", SBData.profileId ?: "null"))
+				source.sendFeedback(Component.translatableEscape("notfirmament.sbinfo.profile", SBData.profileId ?: "null"))
 				val locrawInfo = SBData.locraw
 				if (locrawInfo == null) {
-					source.sendFeedback(Component.translatable("firmament.sbinfo.nolocraw"))
+					source.sendFeedback(Component.translatable("notfirmament.sbinfo.nolocraw"))
 				} else {
-					source.sendFeedback(Component.translatableEscape("firmament.sbinfo.server", locrawInfo.server ?: "null"))
-					source.sendFeedback(Component.translatableEscape("firmament.sbinfo.gametype", locrawInfo.gametype ?: "null"))
-					source.sendFeedback(Component.translatableEscape("firmament.sbinfo.mode", locrawInfo.mode ?: "null"))
-					source.sendFeedback(Component.translatableEscape("firmament.sbinfo.map", locrawInfo.map ?: "null"))
+					source.sendFeedback(Component.translatableEscape("notfirmament.sbinfo.server", locrawInfo.server ?: "null"))
+					source.sendFeedback(Component.translatableEscape("notfirmament.sbinfo.gametype", locrawInfo.gametype ?: "null"))
+					source.sendFeedback(Component.translatableEscape("notfirmament.sbinfo.mode", locrawInfo.mode ?: "null"))
+					source.sendFeedback(Component.translatableEscape("notfirmament.sbinfo.map", locrawInfo.map ?: "null"))
 					source.sendFeedback(
 						tr(
-							"firmament.sbinfo.custommining",
+							"notfirmament.sbinfo.custommining",
 							"Custom Mining: ${formatBool(locrawInfo.skyblockLocation?.hasCustomMining ?: false)}"
 						)
 					)
@@ -300,29 +300,29 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 		thenLiteral("callUrsa") {
 			thenArgument("path", string()) { path ->
 				thenExecute {
-					Firmament.coroutineScope.launch {
-						source.sendFeedback(Component.translatable("firmament.ursa.debugrequest.start"))
+					NotFirmament.coroutineScope.launch {
+						source.sendFeedback(Component.translatable("notfirmament.ursa.debugrequest.start"))
 						val text = UrsaManager.request(get(path).split("/"), HttpResponse.BodyHandlers.ofString())
-						source.sendFeedback(Component.translatableEscape("firmament.ursa.debugrequest.result", text))
+						source.sendFeedback(Component.translatableEscape("notfirmament.ursa.debugrequest.result", text))
 					}
 				}
 			}
 		}
 		thenLiteral("events") {
 			thenExecute {
-				source.sendFeedback(tr("firmament.event.start", "Event Bus Readout:"))
-				FirmamentEventBus.allEventBuses.forEach { eventBus ->
-					val prefixName = eventBus.eventType.typeName.removePrefix("moe.nea.firmament")
+				source.sendFeedback(tr("notfirmament.event.start", "Event Bus Readout:"))
+				NotFirmamentEventBus.allEventBuses.forEach { eventBus ->
+					val prefixName = eventBus.eventType.typeName.removePrefix("moe.nea.notfirmament")
 					source.sendFeedback(
 						tr(
-							"firmament.event.bustype",
+							"notfirmament.event.bustype",
 							"- $prefixName:"
 						)
 					)
 					eventBus.handlers.forEach { handler ->
 						source.sendFeedback(
 							tr(
-								"firmament.event.handler",
+								"notfirmament.event.handler",
 								"   * ${handler.label}"
 							)
 						)
@@ -345,7 +345,7 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 		thenLiteral("mixins") {
 			thenExecute {
 				MixinPlugin.instances.forEach { plugin ->
-					source.sendFeedback(tr("firmament.mixins.start.package", "Mixins (base ${plugin.mixinPackage}):"))
+					source.sendFeedback(tr("notfirmament.mixins.start.package", "Mixins (base ${plugin.mixinPackage}):"))
 					plugin.appliedMixins
 						.map { it.removePrefix(plugin.mixinPackage) }
 						.forEach {
@@ -359,22 +359,22 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 		}
 		thenLiteral("repo") {
 			thenExecute {
-				source.sendFeedback(tr("firmament.repo.info.ref", "Repo Upstream: ${RepoManager.getRepoRef()}"))
+				source.sendFeedback(tr("notfirmament.repo.info.ref", "Repo Upstream: ${RepoManager.getRepoRef()}"))
 				source.sendFeedback(
 					tr(
-						"firmament.repo.info.downloadedref",
+						"notfirmament.repo.info.downloadedref",
 						"Downloaded ref: ${RepoDownloadManager.latestSavedVersionHash}"
 					)
 				)
 				source.sendFeedback(
 					tr(
-						"firmament.repo.info.location",
+						"notfirmament.repo.info.location",
 						"Saved location: ${debugPath(RepoDownloadManager.repoSavedLocation)}"
 					)
 				)
 				source.sendFeedback(
 					tr(
-						"firmament.repo.info.reloadstatus",
+						"notfirmament.repo.info.reloadstatus",
 						"Incomplete: ${
 							formatBool(
 								RepoManager.neuRepo.isIncomplete,
@@ -385,25 +385,25 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 				)
 				source.sendFeedback(
 					tr(
-						"firmament.repo.info.items",
+						"notfirmament.repo.info.items",
 						"Loaded items: ${RepoManager.neuRepo.items?.items?.size}"
 					)
 				)
 				source.sendFeedback(
 					tr(
-						"firmament.repo.info.overlays",
+						"notfirmament.repo.info.overlays",
 						"Overlays: ${RepoManager.overlayData.overlays.size}"
 					)
 				)
 				source.sendFeedback(
 					tr(
-						"firmament.repo.info.itemcache",
+						"notfirmament.repo.info.itemcache",
 						"ItemCache flawless: ${formatBool(ItemCache.isFlawless)}"
 					)
 				)
 				source.sendFeedback(
 					tr(
-						"firmament.repo.info.itemdir",
+						"notfirmament.repo.info.itemdir",
 						"Items on disk: ${debugPath(RepoDownloadManager.repoSavedLocation.resolve("items"))}"
 					)
 				)
@@ -417,10 +417,10 @@ fun firmamentCommand(ctx: CommandBuildContext) = literal("firmament") {
 }
 
 
-fun registerFirmamentCommand(dispatcher: CommandDispatcher<FabricClientCommandSource>, ctx: CommandBuildContext) {
-	val firmament = dispatcher.register(firmamentCommand(ctx))
+fun registerNotFirmamentCommand(dispatcher: CommandDispatcher<FabricClientCommandSource>, ctx: CommandBuildContext) {
+	val notfirmament = dispatcher.register(notfirmamentCommand(ctx))
 	dispatcher.register(literal("firm") {
-		redirect(firmament)
+		redirect(notfirmament)
 	})
 }
 

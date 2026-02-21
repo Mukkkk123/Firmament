@@ -1,10 +1,10 @@
 
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import java.util.concurrent.Executor
 import net.minecraft.server.packs.resources.ResourceManager
 
 data class EarlyResourceReloadEvent(val resourceManager: ResourceManager, val preparationExecutor: Executor) :
-    FirmamentEvent() {
-    companion object : FirmamentEventBus<EarlyResourceReloadEvent>()
+    NotFirmamentEvent() {
+    companion object : NotFirmamentEventBus<EarlyResourceReloadEvent>()
 }

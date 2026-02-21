@@ -1,4 +1,4 @@
-package moe.nea.firmament.gui.hud
+package moe.nea.notfirmament.gui.hud
 
 import io.github.notenoughupdates.moulconfig.gui.GuiContext
 import io.github.notenoughupdates.moulconfig.gui.component.TextComponent
@@ -6,12 +6,12 @@ import io.github.notenoughupdates.moulconfig.platform.MoulConfigScreenComponent
 import net.minecraft.server.packs.resources.ResourceManager
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.events.FinalizeResourceManagerEvent
-import moe.nea.firmament.events.HudRenderEvent
-import moe.nea.firmament.gui.config.HudMeta
-import moe.nea.firmament.jarvis.JarvisIntegration
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MoulConfigUtils
+import moe.nea.notfirmament.events.FinalizeResourceManagerEvent
+import moe.nea.notfirmament.events.HudRenderEvent
+import moe.nea.notfirmament.gui.config.HudMeta
+import moe.nea.notfirmament.jarvis.JarvisIntegration
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MoulConfigUtils
 
 abstract class MoulConfigHud(
 	val name: String,

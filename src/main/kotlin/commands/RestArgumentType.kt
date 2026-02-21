@@ -1,6 +1,6 @@
 
 
-package moe.nea.firmament.commands
+package moe.nea.notfirmament.commands
 
 import com.mojang.brigadier.StringReader
 import com.mojang.brigadier.arguments.ArgumentType

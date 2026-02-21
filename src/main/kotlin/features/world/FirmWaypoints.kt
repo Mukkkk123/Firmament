@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.world
+package moe.nea.notfirmament.features.world
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient

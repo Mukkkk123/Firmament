@@ -1,4 +1,4 @@
-package moe.nea.firmament.util.async
+package moe.nea.notfirmament.util.async
 
 import java.util.concurrent.CompletableFuture
 

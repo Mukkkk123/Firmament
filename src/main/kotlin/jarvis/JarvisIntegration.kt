@@ -1,6 +1,6 @@
 
 
-package moe.nea.firmament.jarvis
+package moe.nea.notfirmament.jarvis
 
 import moe.nea.jarvis.api.Jarvis
 import moe.nea.jarvis.api.JarvisConfigOption
@@ -8,15 +8,15 @@ import moe.nea.jarvis.api.JarvisHud
 import moe.nea.jarvis.api.JarvisPlugin
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.gui.config.HudMeta
-import moe.nea.firmament.gui.config.HudMetaHandler
-import moe.nea.firmament.gui.config.storage.FirmamentConfigLoader
-import moe.nea.firmament.util.data.ManagedConfig
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.gui.config.HudMeta
+import moe.nea.notfirmament.gui.config.HudMetaHandler
+import moe.nea.notfirmament.gui.config.storage.NotFirmamentConfigLoader
+import moe.nea.notfirmament.util.data.ManagedConfig
 
 class JarvisIntegration : JarvisPlugin {
     override fun getModId(): String =
-        Firmament.MOD_ID
+        NotFirmament.MOD_ID
 
     companion object {
         lateinit var jarvis: Jarvis
@@ -27,7 +27,7 @@ class JarvisIntegration : JarvisPlugin {
     }
 
     val configs
-        get() = FirmamentConfigLoader.allConfigs.filterIsInstance<ManagedConfig>()
+        get() = NotFirmamentConfigLoader.allConfigs.filterIsInstance<ManagedConfig>()
 
 
     override fun getAllHuds(): List<JarvisHud> {

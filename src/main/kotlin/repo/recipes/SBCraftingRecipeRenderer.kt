@@ -1,4 +1,4 @@
-package moe.nea.firmament.repo.recipes
+package moe.nea.notfirmament.repo.recipes
 
 import io.github.moulberry.repo.NEURepository
 import io.github.moulberry.repo.data.NEUCraftingRecipe
@@ -8,9 +8,9 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.item.ItemStack
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.Identifier
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.repo.SBItemStack
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.repo.SBItemStack
+import moe.nea.notfirmament.util.tr
 
 object SBCraftingRecipeRenderer : GenericRecipeRenderer<NEUCraftingRecipe> {
 	override fun render(
@@ -63,6 +63,6 @@ object SBCraftingRecipeRenderer : GenericRecipeRenderer<NEUCraftingRecipe> {
 	}
 
 	override val icon: ItemStack = ItemStack(Blocks.CRAFTING_TABLE)
-	override val title: Component = tr("firmament.category.crafting", "SkyBlock Crafting")
-	override val identifier: Identifier = Firmament.identifier("crafting_recipe")
+	override val title: Component = tr("notfirmament.category.crafting", "SkyBlock Crafting")
+	override val identifier: Identifier = NotFirmament.identifier("crafting_recipe")
 }

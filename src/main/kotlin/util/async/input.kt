@@ -1,4 +1,4 @@
-package moe.nea.firmament.util.async
+package moe.nea.notfirmament.util.async
 
 import io.github.notenoughupdates.moulconfig.gui.GuiContext
 import io.github.notenoughupdates.moulconfig.gui.component.CenterComponent
@@ -10,12 +10,12 @@ import io.github.notenoughupdates.moulconfig.observer.GetSetter
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import net.minecraft.client.gui.screens.Screen
-import moe.nea.firmament.events.HandledScreenKeyPressedEvent
-import moe.nea.firmament.gui.FirmButtonComponent
-import moe.nea.firmament.keybindings.SavedKeyBinding
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MoulConfigUtils
-import moe.nea.firmament.util.ScreenUtil
+import moe.nea.notfirmament.events.HandledScreenKeyPressedEvent
+import moe.nea.notfirmament.gui.FirmButtonComponent
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MoulConfigUtils
+import moe.nea.notfirmament.util.ScreenUtil
 
 private object InputHandler {
 	data class KeyInputContinuation(val keybind: SavedKeyBinding, val onContinue: () -> Unit)

@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.events.anniversity
+package moe.nea.notfirmament.features.events.anniversity
 
 import io.github.notenoughupdates.moulconfig.observer.ObservableList
 import io.github.notenoughupdates.moulconfig.xml.Bind
@@ -7,23 +7,23 @@ import kotlin.time.Duration.Companion.seconds
 import net.minecraft.network.chat.Component
 import net.minecraft.core.BlockPos
 import net.minecraft.world.entity.animal.pig.Pig
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.EntityInteractionEvent
-import moe.nea.firmament.events.ProcessChatEvent
-import moe.nea.firmament.events.TickEvent
-import moe.nea.firmament.events.WorldReadyEvent
-import moe.nea.firmament.gui.hud.MoulConfigHud
-import moe.nea.firmament.repo.ExpensiveItemCacheApi
-import moe.nea.firmament.repo.ItemNameLookup
-import moe.nea.firmament.repo.SBItemStack
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.SHORT_NUMBER_FORMAT
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.TimeMark
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.parseShortNumber
-import moe.nea.firmament.util.useMatch
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.EntityInteractionEvent
+import moe.nea.notfirmament.events.ProcessChatEvent
+import moe.nea.notfirmament.events.TickEvent
+import moe.nea.notfirmament.events.WorldReadyEvent
+import moe.nea.notfirmament.gui.hud.MoulConfigHud
+import moe.nea.notfirmament.repo.ExpensiveItemCacheApi
+import moe.nea.notfirmament.repo.ItemNameLookup
+import moe.nea.notfirmament.repo.SBItemStack
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.SHORT_NUMBER_FORMAT
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.TimeMark
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.parseShortNumber
+import moe.nea.notfirmament.util.useMatch
 
 object AnniversaryFeatures {
 	val identifier: String

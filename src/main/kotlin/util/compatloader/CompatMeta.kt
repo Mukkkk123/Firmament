@@ -1,9 +1,9 @@
-package moe.nea.firmament.util.compatloader
+package moe.nea.notfirmament.util.compatloader
 
 import java.util.ServiceLoader
-import moe.nea.firmament.events.subscription.SubscriptionList
-import moe.nea.firmament.init.AutoDiscoveryPlugin
-import moe.nea.firmament.util.ErrorUtil
+import moe.nea.notfirmament.events.subscription.SubscriptionList
+import moe.nea.notfirmament.init.AutoDiscoveryPlugin
+import moe.nea.notfirmament.util.ErrorUtil
 
 /**
  * Declares the compat meta interface for the current source set.

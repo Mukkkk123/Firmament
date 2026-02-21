@@ -1,5 +1,5 @@
 
-package moe.nea.firmament.util
+package moe.nea.notfirmament.util
 
 
 fun runNull(block: () -> Unit): Nothing? {

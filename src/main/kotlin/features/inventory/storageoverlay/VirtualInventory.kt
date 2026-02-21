@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.inventory.storageoverlay
+package moe.nea.notfirmament.features.inventory.storageoverlay
 
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -19,12 +19,12 @@ import net.minecraft.nbt.NbtIo
 import net.minecraft.nbt.ListTag
 import net.minecraft.nbt.NbtOps
 import net.minecraft.nbt.NbtAccounter
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.features.inventory.storageoverlay.VirtualInventory.Serializer.writeToByteArray
-import moe.nea.firmament.util.Base64Util
-import moe.nea.firmament.util.ErrorUtil
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.mc.TolerantRegistriesOps
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.features.inventory.storageoverlay.VirtualInventory.Serializer.writeToByteArray
+import moe.nea.notfirmament.util.Base64Util
+import moe.nea.notfirmament.util.ErrorUtil
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.mc.TolerantRegistriesOps
 
 @Serializable(with = VirtualInventory.Serializer::class)
 data class VirtualInventory(

@@ -1,14 +1,14 @@
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.inventory.Slot
 import net.minecraft.world.inventory.ClickType
-import moe.nea.firmament.util.CommonSoundEffects
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.grey
-import moe.nea.firmament.util.hover
-import moe.nea.firmament.util.red
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.util.CommonSoundEffects
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.grey
+import moe.nea.notfirmament.util.hover
+import moe.nea.notfirmament.util.red
+import moe.nea.notfirmament.util.tr
 
 data class IsSlotProtectedEvent(
     val slot: Slot?,
@@ -17,7 +17,7 @@ data class IsSlotProtectedEvent(
     val itemStackOverride: ItemStack?,
     val origin: MoveOrigin,
     var silent: Boolean = false,
-) : FirmamentEvent() {
+) : NotFirmamentEvent() {
 	val itemStack get() = itemStackOverride ?: slot!!.item
 
 	fun protect() {
@@ -41,7 +41,7 @@ data class IsSlotProtectedEvent(
 		;
 	}
 
-	companion object : FirmamentEventBus<IsSlotProtectedEvent>() {
+	companion object : NotFirmamentEventBus<IsSlotProtectedEvent>() {
 		@JvmStatic
 		@JvmOverloads
 		fun shouldBlockInteraction(
@@ -53,11 +53,11 @@ data class IsSlotProtectedEvent(
 			val event = IsSlotProtectedEvent(slot, action, false, itemStackOverride, origin)
 			publish(event)
 			if (event.isProtected && !event.silent) {
-				MC.sendChat(tr("firmament.protectitem", "Firmament protected your item: ${event.itemStack.hoverName}.\n")
+				MC.sendChat(tr("notfirmament.protectitem", "NotFirmament protected your item: ${event.itemStack.hoverName}.\n")
 					            .red()
-					            .append(tr("firmament.protectitem.hoverhint", "Hover for more info.").grey())
-					            .hover(tr("firmament.protectitem.hint",
-					                      "To unlock this item use the Lock Slot or Lock Item keybind from Firmament while hovering over this item. If this is a bound slot, you can use disable the Lock Bound Slots setting.")))
+					            .append(tr("notfirmament.protectitem.hoverhint", "Hover for more info.").grey())
+					            .hover(tr("notfirmament.protectitem.hint",
+					                      "To unlock this item use the Lock Slot or Lock Item keybind from NotFirmament while hovering over this item. If this is a bound slot, you can use disable the Lock Bound Slots setting.")))
 				CommonSoundEffects.playFailure()
 			}
 			return event.isProtected

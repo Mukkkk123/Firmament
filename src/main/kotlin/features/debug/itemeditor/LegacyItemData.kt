@@ -1,13 +1,13 @@
-package moe.nea.firmament.features.debug.itemeditor
+package moe.nea.notfirmament.features.debug.itemeditor
 
 import kotlinx.serialization.Serializable
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.Identifier
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.repo.ExpensiveItemCacheApi
-import moe.nea.firmament.repo.ItemCache
-import moe.nea.firmament.util.StringUtil.camelWords
-import moe.nea.firmament.util.mc.loadItemFromNbt
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.repo.ExpensiveItemCacheApi
+import moe.nea.notfirmament.repo.ItemCache
+import moe.nea.notfirmament.util.StringUtil.camelWords
+import moe.nea.notfirmament.util.mc.loadItemFromNbt
 
 /**
  * Load data based on [prismarine.js' 1.8 item data](https://github.com/PrismarineJS/minecraft-data/blob/master/data/pc/1.8/items.json)
@@ -49,7 +49,7 @@ object LegacyItemData {
 	)
 
 	inline fun <reified T : Any> getLegacyData(name: String) =
-		Firmament.tryDecodeJsonFromStream<T>(
+		NotFirmament.tryDecodeJsonFromStream<T>(
 			LegacyItemData::class.java.getResourceAsStream("/legacy_data/$name.json")!!
 		).getOrThrow()
 

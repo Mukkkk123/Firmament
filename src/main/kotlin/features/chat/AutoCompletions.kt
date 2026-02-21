@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.chat
+package moe.nea.notfirmament.features.chat
 
 import com.mojang.brigadier.Message
 import com.mojang.brigadier.arguments.StringArgumentType.string
@@ -10,18 +10,18 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
 import kotlin.concurrent.thread
 import net.minecraft.SharedConstants
 import net.minecraft.commands.BrigadierExceptions
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.get
-import moe.nea.firmament.commands.suggestsList
-import moe.nea.firmament.commands.thenArgument
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.events.MaskCommands
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.get
+import moe.nea.notfirmament.commands.suggestsList
+import moe.nea.notfirmament.commands.thenArgument
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.events.MaskCommands
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.tr
 
 object AutoCompletions {
 
@@ -64,7 +64,7 @@ object AutoCompletions {
 
 	fun CommandContext<*>.redirectToServer() {
 		val message = tr(
-			"firmament.warp.auto-complete.internal-throw",
+			"notfirmament.warp.auto-complete.internal-throw",
 			"This is an internal syntax exception that should not show up in gameplay, used to pass on a command to the server"
 		)
 		throw CommandSyntaxException(CommandSyntaxException.BUILT_IN_EXCEPTIONS.dispatcherUnknownCommand(), message)

@@ -32,8 +32,8 @@ plugins {
 	alias(libs.plugins.kotlin.plugin.ksp)
 	alias(libs.plugins.loom)
 	alias(libs.plugins.shadow) apply false
-	id("firmament.common")
-	id("firmament.license-management")
+	id("notfirmament.common")
+	id("notfirmament.license-management")
 	alias(libs.plugins.mcAutoTranslations)
 }
 
@@ -105,7 +105,7 @@ fun createIsolatedSourceSet(
 	afterEvaluate {
 		tasks.named("ksp${upperName}Kotlin", KspAATask::class) {
 			this.commandLineArgumentProviders.add { // TODO: update https://github.com/google/ksp/issues/2075
-				listOf("firmament.sourceset=${ss.name}")
+				listOf("notfirmament.sourceset=${ss.name}")
 			}
 			if (!enableKsp)
 				this.enabled = false
@@ -200,7 +200,7 @@ val testAgent by configurations.creating {
 fabricApi.configureTests {
 	createSourceSet.set(true)
 	enableClientGameTests.set(true)
-	modId.set("firmament-gametest")
+	modId.set("notfirmament-gametest")
 	eula.set(true)
 	username.set("CoolGuy123")
 }
@@ -304,14 +304,14 @@ dependencies {
 
 loom {
 	clientOnlyMinecraftJar()
-	accessWidenerPath.set(project.file("src/main/resources/firmament.accesswidener"))
+	accessWidenerPath.set(project.file("src/main/resources/notfirmament.accesswidener"))
 	runs {
 		removeIf { it.name == "server" }
 		configureEach {
 			property("fabric.log.level", "info")
-			property("firmament.debug", "true")
+			property("notfirmament.debug", "true")
 			property(
-				"firmament.classroots",
+				"notfirmament.classroots",
 				compatSourceSets.joinToString(File.pathSeparator) {
 					File(it.output.classesDirs.asPath).absolutePath
 				})
@@ -336,12 +336,12 @@ loom {
 }
 
 mcAutoTranslations {
-	translationFunction.set("moe.nea.firmament.util.tr")
-	translationFunctionResolved.set("moe.nea.firmament.util.trResolved")
+	translationFunction.set("moe.nea.notfirmament.util.tr")
+	translationFunctionResolved.set("moe.nea.notfirmament.util.trResolved")
 }
 
 val downloadTestRepo by tasks.registering(RepoDownload::class) {
-	this.hash.set(project.property("firmament.compiletimerepohash") as String)
+	this.hash.set(project.property("notfirmament.compiletimerepohash") as String)
 }
 
 val updateTestRepo by tasks.registering {
@@ -356,8 +356,8 @@ val updateTestRepo by tasks.registering {
 		val latestSha = json["commit"].asJsonObject["sha"].asString
 		var text = propertiesFile.readText()
 		text = text.replace(
-			"firmament\\.compiletimerepohash=[^\n]*".toRegex(),
-			"firmament.compiletimerepohash=$latestSha"
+			"notfirmament\\.compiletimerepohash=[^\n]*".toRegex(),
+			"notfirmament.compiletimerepohash=$latestSha"
 		)
 		propertiesFile.writeText(text)
 	}
@@ -373,7 +373,7 @@ tasks.test {
 		wd.mkdirs()
 		wd.resolve("config").deleteRecursively()
 		systemProperty(
-			"firmament.testrepo",
+			"notfirmament.testrepo",
 			downloadTestRepo.flatMap { it.outputDirectory.asFile }.map { it.absolutePath }.get()
 		)
 		jvmArgs("-javaagent:${testAgent.singleFile.absolutePath}")
@@ -382,7 +382,7 @@ tasks.test {
 	jvmArgs("-XX:+EnableDynamicAgentLoading")
 	systemProperties(
 		"kotest.framework.classpath.scanning.config.disable" to true,
-		"kotest.framework.config.fqn" to "moe.nea.firmament.test.testutil.KotestPlugin",
+		"kotest.framework.config.fqn" to "moe.nea.notfirmament.test.testutil.KotestPlugin",
 	)
 	useJUnitPlatform()
 }
@@ -448,8 +448,8 @@ shadowJar.configure {
 	from(zipTree(tasks.remapJar.flatMap { it.archiveFile }))
 	configurations = listOf(shadowMe)
 	archiveClassifier.set("")
-	relocate("io.github.moulberry.repo", "moe.nea.firmament.deps.repo")
-	relocate("io.github.notenoughupdates.moulconfig", "moe.nea.firmament.deps.moulconfig")
+	relocate("io.github.moulberry.repo", "moe.nea.notfirmament.deps.repo")
+	relocate("io.github.notenoughupdates.moulconfig", "moe.nea.notfirmament.deps.moulconfig")
 	mergeServiceFiles()
 	transform<FabricModTransform>()
 }
@@ -480,10 +480,10 @@ tasks.processResources {
 	exclude("**/*.license")
 	from(tasks.scanLicenses)
 	from(collectTranslations) {
-		into("assets/firmament/lang")
+		into("assets/notfirmament/lang")
 	}
 	from(project.files("translations/languages/")) {
-		into("assets/firmament/lang")
+		into("assets/notfirmament/lang")
 	}
 }
 

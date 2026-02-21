@@ -1,4 +1,4 @@
-package moe.nea.firmament.repo
+package moe.nea.notfirmament.repo
 
 import io.github.moulberry.repo.NEURepository
 import io.github.moulberry.repo.NEURepositoryException
@@ -14,17 +14,17 @@ import net.minecraft.client.Minecraft
 import net.minecraft.network.protocol.game.ClientboundUpdateRecipesPacket
 import net.minecraft.world.item.crafting.SelectableRecipe
 import net.minecraft.util.StringRepresentable
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.Firmament.logger
-import moe.nea.firmament.events.ReloadRegistrationEvent
-import moe.nea.firmament.util.ErrorUtil
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MinecraftDispatcher
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.TestUtil
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.NotFirmament.logger
+import moe.nea.notfirmament.events.ReloadRegistrationEvent
+import moe.nea.notfirmament.util.ErrorUtil
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MinecraftDispatcher
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.TestUtil
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.tr
 
 object RepoManager {
 	@Config
@@ -43,7 +43,7 @@ object RepoManager {
 		val disableItemGroups by toggle("disable-item-groups") { true }
 		val reload by button("reload") {
 			markDirty()
-			Firmament.coroutineScope.launch {
+			NotFirmament.coroutineScope.launch {
 				RepoManager.reload()
 			}
 		}
@@ -93,7 +93,7 @@ object RepoManager {
 			ReloadRegistrationEvent.publish(ReloadRegistrationEvent(this))
 			registerReloadListener {
 				if (TestUtil.isInTest) return@registerReloadListener
-				Firmament.coroutineScope.launch(MinecraftDispatcher) {
+				NotFirmament.coroutineScope.launch(MinecraftDispatcher) {
 					if (!trySendClientboundUpdateRecipesPacket()) {
 						logger.warn("Failed to issue a ClientboundUpdateRecipesPacket (to reload REI). This may lead to an outdated item list.")
 						recentlyFailedToUpdateItemList = true
@@ -127,14 +127,14 @@ object RepoManager {
 	fun getNEUItem(skyblockId: SkyblockId): NEUItem? = neuRepo.items.getItemBySkyblockId(skyblockId.neuItem)
 
 	fun downloadOverridenBranch(branch: String) {
-		Firmament.coroutineScope.launch {
+		NotFirmament.coroutineScope.launch {
 			RepoDownloadManager.downloadUpdate(true, branch)
 			reload()
 		}
 	}
 
 	fun launchAsyncUpdate(force: Boolean = false) {
-		Firmament.coroutineScope.launch {
+		NotFirmament.coroutineScope.launch {
 			RepoDownloadManager.downloadUpdate(force)
 			reload()
 		}
@@ -161,7 +161,7 @@ object RepoManager {
 			ErrorUtil.softError("Failed to reload repository", exc)
 			MC.sendChat(
 				tr(
-					"firmament.repo.reloadfail",
+					"notfirmament.repo.reloadfail",
 					"Failed to reload repository. This will result in some mod features not working."
 				)
 			)
@@ -172,7 +172,7 @@ object RepoManager {
 	fun initialize() {
 		if (wasInitialized) return
 		wasInitialized = true
-		System.getProperty("firmament.testrepo")?.let { compTimeRepo ->
+		System.getProperty("notfirmament.testrepo")?.let { compTimeRepo ->
 			reloadForTest(Path.of(compTimeRepo))
 			return
 		}
@@ -180,7 +180,7 @@ object RepoManager {
 		if (TConfig.autoUpdate) {
 			launchAsyncUpdate()
 		} else {
-			Firmament.coroutineScope.launch {
+			NotFirmament.coroutineScope.launch {
 				reload()
 			}
 		}

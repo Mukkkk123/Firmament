@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.inventory.storageoverlay
+package moe.nea.notfirmament.features.inventory.storageoverlay
 
 import io.github.notenoughupdates.moulconfig.ChromaColour
 import java.util.SortedMap
@@ -9,18 +9,18 @@ import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.item.Items
 import net.minecraft.network.protocol.game.ServerboundContainerClosePacket
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.ChestInventoryUpdateEvent
-import moe.nea.firmament.events.ScreenChangeEvent
-import moe.nea.firmament.events.SlotClickEvent
-import moe.nea.firmament.events.SlotRenderEvents
-import moe.nea.firmament.events.TickEvent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.async.discard
-import moe.nea.firmament.util.customgui.customGui
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.data.ProfileSpecificDataHolder
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.ChestInventoryUpdateEvent
+import moe.nea.notfirmament.events.ScreenChangeEvent
+import moe.nea.notfirmament.events.SlotClickEvent
+import moe.nea.notfirmament.events.SlotRenderEvents
+import moe.nea.notfirmament.events.TickEvent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.async.discard
+import moe.nea.notfirmament.util.customgui.customGui
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.data.ProfileSpecificDataHolder
 
 object StorageOverlay {
 

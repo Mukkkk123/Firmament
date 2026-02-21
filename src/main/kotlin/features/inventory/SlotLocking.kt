@@ -1,6 +1,6 @@
 @file:UseSerializers(DashlessUUIDSerializer::class)
 
-package moe.nea.firmament.features.inventory
+package moe.nea.notfirmament.features.inventory
 
 import java.util.UUID
 import org.lwjgl.glfw.GLFW
@@ -27,41 +27,41 @@ import net.minecraft.world.inventory.Slot
 import net.minecraft.world.inventory.ClickType
 import net.minecraft.resources.Identifier
 import net.minecraft.util.StringRepresentable
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.ClientInitEvent
-import moe.nea.firmament.events.HandledScreenForegroundEvent
-import moe.nea.firmament.events.HandledScreenKeyPressedEvent
-import moe.nea.firmament.events.HandledScreenKeyReleasedEvent
-import moe.nea.firmament.events.IsSlotProtectedEvent
-import moe.nea.firmament.events.ScreenChangeEvent
-import moe.nea.firmament.events.SlotRenderEvents
-import moe.nea.firmament.keybindings.InputModifiers
-import moe.nea.firmament.keybindings.SavedKeyBinding
-import moe.nea.firmament.mixins.accessor.AccessorHandledScreen
-import moe.nea.firmament.util.CommonSoundEffects
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.SBData
-import moe.nea.firmament.util.SkyBlockIsland
-import moe.nea.firmament.util.accessors.castAccessor
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.data.ProfileSpecificDataHolder
-import moe.nea.firmament.util.extraAttributes
-import moe.nea.firmament.util.json.DashlessUUIDSerializer
-import moe.nea.firmament.util.lime
-import moe.nea.firmament.util.mc.ScreenUtil.getSlotByIndex
-import moe.nea.firmament.util.mc.SlotUtils.swapWithHotBar
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.mc.loreAccordingToNbt
-import moe.nea.firmament.util.red
-import moe.nea.firmament.util.render.drawAlignedBox
-import moe.nea.firmament.util.render.drawLine
-import moe.nea.firmament.util.skyBlockId
-import moe.nea.firmament.util.skyblock.DungeonUtil
-import moe.nea.firmament.util.skyblock.SkyBlockItems
-import moe.nea.firmament.util.skyblockUUID
-import moe.nea.firmament.util.tr
-import moe.nea.firmament.util.unformattedString
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.ClientInitEvent
+import moe.nea.notfirmament.events.HandledScreenForegroundEvent
+import moe.nea.notfirmament.events.HandledScreenKeyPressedEvent
+import moe.nea.notfirmament.events.HandledScreenKeyReleasedEvent
+import moe.nea.notfirmament.events.IsSlotProtectedEvent
+import moe.nea.notfirmament.events.ScreenChangeEvent
+import moe.nea.notfirmament.events.SlotRenderEvents
+import moe.nea.notfirmament.keybindings.InputModifiers
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.mixins.accessor.AccessorHandledScreen
+import moe.nea.notfirmament.util.CommonSoundEffects
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.SBData
+import moe.nea.notfirmament.util.SkyBlockIsland
+import moe.nea.notfirmament.util.accessors.castAccessor
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.data.ProfileSpecificDataHolder
+import moe.nea.notfirmament.util.extraAttributes
+import moe.nea.notfirmament.util.json.DashlessUUIDSerializer
+import moe.nea.notfirmament.util.lime
+import moe.nea.notfirmament.util.mc.ScreenUtil.getSlotByIndex
+import moe.nea.notfirmament.util.mc.SlotUtils.swapWithHotBar
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.mc.loreAccordingToNbt
+import moe.nea.notfirmament.util.red
+import moe.nea.notfirmament.util.render.drawAlignedBox
+import moe.nea.notfirmament.util.render.drawLine
+import moe.nea.notfirmament.util.skyBlockId
+import moe.nea.notfirmament.util.skyblock.DungeonUtil
+import moe.nea.notfirmament.util.skyblock.SkyBlockItems
+import moe.nea.notfirmament.util.skyblockUUID
+import moe.nea.notfirmament.util.tr
+import moe.nea.notfirmament.util.unformattedString
 
 object SlotLocking {
 	val identifier: String
@@ -307,17 +307,17 @@ object SlotLocking {
 		val inventory = MC.handledScreen ?: return
 		inventory.castAccessor()
 
-		val slot = inventory.focusedSlot_Firmament ?: return
+		val slot = inventory.focusedSlot_NotFirmament ?: return
 		val stack = slot.item ?: return
 		if (stack.isHuntingBox()) {
 			MC.sendChat(
 				tr(
-					"firmament.slot-locking.hunting-box-unbindable-hint",
+					"notfirmament.slot-locking.hunting-box-unbindable-hint",
 					"The hunting box cannot be UUID bound reliably. It changes its own UUID frequently when switching tools. "
 				).red().append(
 					tr(
-						"firmament.slot-locking.hunting-box-unbindable-hint.solution",
-						"Use the Firmament config option for locking all hunting boxes instead."
+						"notfirmament.slot-locking.hunting-box-unbindable-hint.solution",
+						"Use the NotFirmament config option for locking all hunting boxes instead."
 					).lime()
 				)
 			)
@@ -341,7 +341,7 @@ object SlotLocking {
 	fun onLockSlotKeyRelease(it: HandledScreenKeyReleasedEvent) {
 		val inventory = MC.handledScreen ?: return
 		inventory.castAccessor()
-		val slot = inventory.focusedSlot_Firmament
+		val slot = inventory.focusedSlot_NotFirmament
 		val storedSlot = storedLockingSlot ?: return
 
 		if (it.matches(TConfig.slotBind) && slot != storedSlot && slot != null && slot.isHotbar() != storedSlot.isHotbar()) {
@@ -375,8 +375,8 @@ object SlotLocking {
 		val boundSlots = currentWorldData?.boundSlots ?: return
 		fun findByIndex(index: Int) = event.screen.getSlotByIndex(index, true)
 		val accScreen = event.screen.castAccessor()
-		val sx = accScreen.x_Firmament
-		val sy = accScreen.y_Firmament
+		val sx = accScreen.x_NotFirmament
+		val sy = accScreen.y_NotFirmament
 		val highlitSlots = mutableSetOf<Slot>()
 		for (it in boundSlots.pairs) {
 			val hotbarSlot = findByIndex(it.hotbar) ?: continue
@@ -384,8 +384,8 @@ object SlotLocking {
 
 			val (hotX, hotY) = hotbarSlot.lineCenter()
 			val (invX, invY) = inventorySlot.lineCenter()
-			val anyHovered = accScreen.focusedSlot_Firmament === hotbarSlot
-				|| accScreen.focusedSlot_Firmament === inventorySlot
+			val anyHovered = accScreen.focusedSlot_NotFirmament === hotbarSlot
+				|| accScreen.focusedSlot_NotFirmament === inventorySlot
 			if (!anyHovered && TConfig.slotRenderLines == SlotRenderLinesMode.NOTHING)
 				continue
 			if (anyHovered) {
@@ -420,11 +420,11 @@ object SlotLocking {
 	fun onRenderCurrentDraggingSlot(event: HandledScreenForegroundEvent) {
 		val draggingSlot = storedLockingSlot ?: return
 		val accScreen = event.screen.castAccessor()
-		val hoveredSlot = accScreen.focusedSlot_Firmament
+		val hoveredSlot = accScreen.focusedSlot_NotFirmament
 			?.takeIf { it.container is Inventory }
 			?.takeIf { it == draggingSlot || it.isHotbar() != draggingSlot.isHotbar() }
-		val sx = accScreen.x_Firmament
-		val sy = accScreen.y_Firmament
+		val sx = accScreen.x_NotFirmament
+		val sy = accScreen.y_NotFirmament
 		val (borderX, borderY) = draggingSlot.lineCenter()
 		event.context.drawAlignedBox(
 			draggingSlot.x + sx,
@@ -495,7 +495,7 @@ object SlotLocking {
 		val inventory = MC.handledScreen ?: return
 		inventory.castAccessor()
 
-		val slot = inventory.focusedSlot_Firmament ?: return
+		val slot = inventory.focusedSlot_NotFirmament ?: return
 		if (slot.container !is Inventory) return
 		if (it.matches(TConfig.slotBind)) {
 			storedLockingSlot = storedLockingSlot ?: slot
@@ -516,10 +516,10 @@ object SlotLocking {
 				RenderPipelines.GUI_TEXTURED,
 				when {
 					isSlotLocked ->
-						(Identifier.parse("firmament:slot_locked"))
+						(Identifier.parse("notfirmament:slot_locked"))
 
 					isUUIDLocked ->
-						(Identifier.parse("firmament:uuid_locked"))
+						(Identifier.parse("notfirmament:uuid_locked"))
 
 					else ->
 						error("unreachable")

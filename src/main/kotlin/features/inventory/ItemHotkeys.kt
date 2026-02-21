@@ -1,19 +1,19 @@
-package moe.nea.firmament.features.inventory
+package moe.nea.notfirmament.features.inventory
 
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.HandledScreenKeyPressedEvent
-import moe.nea.firmament.repo.ExpensiveItemCacheApi
-import moe.nea.firmament.repo.HypixelStaticData
-import moe.nea.firmament.repo.ItemCache.asItemStack
-import moe.nea.firmament.repo.ItemCache.isBroken
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.asBazaarStock
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.focusedItemStack
-import moe.nea.firmament.util.skyBlockId
-import moe.nea.firmament.util.skyblock.SBItemUtil.getSearchName
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.HandledScreenKeyPressedEvent
+import moe.nea.notfirmament.repo.ExpensiveItemCacheApi
+import moe.nea.notfirmament.repo.HypixelStaticData
+import moe.nea.notfirmament.repo.ItemCache.asItemStack
+import moe.nea.notfirmament.repo.ItemCache.isBroken
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.asBazaarStock
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.focusedItemStack
+import moe.nea.notfirmament.util.skyBlockId
+import moe.nea.notfirmament.util.skyblock.SBItemUtil.getSearchName
 
 object ItemHotkeys {
 	@Config

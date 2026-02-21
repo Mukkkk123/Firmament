@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.items.recipes
+package moe.nea.notfirmament.features.items.recipes
 
 import io.github.notenoughupdates.moulconfig.observer.GetSetter
 import io.github.notenoughupdates.moulconfig.observer.Property
@@ -16,18 +16,18 @@ import net.minecraft.client.input.MouseButtonInfo
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.api.v1.FirmamentAPI
-import moe.nea.firmament.events.HandledScreenClickEvent
-import moe.nea.firmament.events.HandledScreenForegroundEvent
-import moe.nea.firmament.events.ReloadRegistrationEvent
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.repo.SBItemStack
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.accessors.castAccessor
-import moe.nea.firmament.util.render.drawAlignedBox
-import moe.nea.firmament.util.render.drawLine
-import moe.nea.firmament.util.skyblockId
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.api.v1.NotFirmamentAPI
+import moe.nea.notfirmament.events.HandledScreenClickEvent
+import moe.nea.notfirmament.events.HandledScreenForegroundEvent
+import moe.nea.notfirmament.events.ReloadRegistrationEvent
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.repo.SBItemStack
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.accessors.castAccessor
+import moe.nea.notfirmament.util.render.drawAlignedBox
+import moe.nea.notfirmament.util.render.drawLine
+import moe.nea.notfirmament.util.skyblockId
 
 object ItemList {
 	// TODO: add a global toggle for this and RecipeRegistry
@@ -38,14 +38,14 @@ object ItemList {
 			val screenHandler = screen.castAccessor()
 			exclusions.add(
 				ScreenRectangle(
-					screenHandler.x_Firmament,
-					screenHandler.y_Firmament,
-					screenHandler.backgroundWidth_Firmament,
-					screenHandler.backgroundHeight_Firmament
+					screenHandler.x_NotFirmament,
+					screenHandler.y_NotFirmament,
+					screenHandler.backgroundWidth_NotFirmament,
+					screenHandler.backgroundHeight_NotFirmament
 				)
 			)
 		}
-		FirmamentAPI.getInstance().extensions
+		NotFirmamentAPI.getInstance().extensions
 			.forEach { extension ->
 				for (rectangle in extension.getExclusionZones(screen)) {
 					if (exclusions.any { it.encompasses(rectangle) })

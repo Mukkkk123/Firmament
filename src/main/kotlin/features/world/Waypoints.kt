@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.world
+package moe.nea.notfirmament.features.world
 
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import me.shedaniel.math.Color
@@ -7,21 +7,21 @@ import kotlin.time.Duration.Companion.seconds
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument
 import net.minecraft.network.chat.Component
 import net.minecraft.world.phys.Vec3
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.get
-import moe.nea.firmament.commands.thenArgument
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.commands.thenLiteral
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.events.TickEvent
-import moe.nea.firmament.events.WorldReadyEvent
-import moe.nea.firmament.events.WorldRenderLastEvent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.mc.asFakeServer
-import moe.nea.firmament.util.render.RenderInWorldContext
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.get
+import moe.nea.notfirmament.commands.thenArgument
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.commands.thenLiteral
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.events.TickEvent
+import moe.nea.notfirmament.events.WorldReadyEvent
+import moe.nea.notfirmament.events.WorldRenderLastEvent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.mc.asFakeServer
+import moe.nea.notfirmament.util.render.RenderInWorldContext
+import moe.nea.notfirmament.util.tr
 
 object Waypoints {
 	val identifier: String
@@ -125,7 +125,7 @@ object Waypoints {
 					w.waypoints.add(FirmWaypoints.Waypoint.from(position))
 					source.sendFeedback(
 						Component.translatableEscape(
-							"firmament.command.waypoint.added",
+							"notfirmament.command.waypoint.added",
 							position.x,
 							position.y,
 							position.z
@@ -140,7 +140,7 @@ object Waypoints {
 					orderedIndex = 0
 					source.sendFeedback(
 						tr(
-							"firmament.command.waypoint.reset",
+							"notfirmament.command.waypoint.reset",
 							"Reset your ordered waypoint index back to 0. If you want to delete all waypoints use /firm waypoints clear instead."
 						)
 					)
@@ -169,7 +169,7 @@ object Waypoints {
 							)
 							source.sendFeedback(
 								tr(
-									"firmament.command.waypoint.indexchange",
+									"notfirmament.command.waypoint.indexchange",
 									"Moved waypoint from index $fromIndex to $toIndex. Note that this only matters for ordered waypoints."
 								)
 							)
@@ -180,7 +180,7 @@ object Waypoints {
 			thenLiteral("clear") {
 				thenExecute {
 					waypoints = null
-					source.sendFeedback(Component.translatable("firmament.command.waypoint.clear"))
+					source.sendFeedback(Component.translatable("notfirmament.command.waypoint.clear"))
 				}
 			}
 			thenLiteral("toggleordered") {
@@ -192,7 +192,7 @@ object Waypoints {
 						orderedIndex = // TODO: this should be extracted to a utility method
 							w.waypoints.withIndex().minByOrNull { it.value.blockPos.distToCenterSqr(p) }?.index ?: 0
 					}
-					source.sendFeedback(Component.translatable("firmament.command.waypoint.ordered.toggle.${w.isOrdered}"))
+					source.sendFeedback(Component.translatable("notfirmament.command.waypoint.ordered.toggle.${w.isOrdered}"))
 				}
 			}
 			thenLiteral("skip") {
@@ -200,9 +200,9 @@ object Waypoints {
 					val w = useNonEmptyWaypoints()
 					if (w != null && w.isOrdered) {
 						orderedIndex = (orderedIndex + 1) % w.size
-						source.sendFeedback(Component.translatable("firmament.command.waypoint.skip"))
+						source.sendFeedback(Component.translatable("notfirmament.command.waypoint.skip"))
 					} else {
-						source.sendError(Component.translatable("firmament.command.waypoint.skip.error"))
+						source.sendError(Component.translatable("notfirmament.command.waypoint.skip.error"))
 					}
 				}
 			}
@@ -215,12 +215,12 @@ object Waypoints {
 							w.waypoints.removeAt(index)
 							source.sendFeedback(
 								Component.translatableEscape(
-									"firmament.command.waypoint.remove",
+									"notfirmament.command.waypoint.remove",
 									index
 								)
 							)
 						} else {
-							source.sendError(Component.translatableEscape("firmament.command.waypoint.remove.error"))
+							source.sendError(Component.translatableEscape("notfirmament.command.waypoint.remove.error"))
 						}
 					}
 				}
@@ -230,13 +230,13 @@ object Waypoints {
 
 	fun textInvalidIndex(index: Int) =
 		tr(
-			"firmament.command.waypoint.invalid-index",
+			"notfirmament.command.waypoint.invalid-index",
 			"Invalid index $index provided."
 		)
 
 	fun textNothingToExport(): Component =
 		tr(
-			"firmament.command.waypoint.export.nowaypoints",
+			"notfirmament.command.waypoint.export.nowaypoints",
 			"No waypoints to export found. Add some with /firm waypoint ~ ~ ~."
 		)
 }

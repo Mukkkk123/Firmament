@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.misc
+package moe.nea.notfirmament.features.misc
 
 import util.render.CustomRenderPipelines
 import kotlin.time.Duration
@@ -12,12 +12,12 @@ import net.minecraft.client.renderer.rendertype.RenderType
 import net.minecraft.world.entity.player.PlayerSkin
 import net.minecraft.core.ClientAsset
 import net.minecraft.resources.Identifier
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.TimeMark
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.mc.CustomRenderPassHelper
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.TimeMark
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.mc.CustomRenderPassHelper
 
 object CustomCapes {
 	val identifier: String
@@ -64,7 +64,7 @@ object CustomCapes {
 		) {
 			val animationValue = (startTime.passedTime() / animationSpeed).mod(1F)
 			CustomRenderPassHelper(
-				{ "Firmament Cape Renderer" },
+				{ "NotFirmament Cape Renderer" },
 				renderLayer.mode(),
 				renderLayer.format(),
 				MC.instance.mainRenderTarget,
@@ -92,7 +92,7 @@ object CustomCapes {
 
 		}
 
-		var cape_firmament: CustomCape?
+		var cape_notfirmament: CustomCape?
 	}
 
 	data class CustomCape(
@@ -103,29 +103,29 @@ object CustomCapes {
 
 	enum class AllCapes(val label: String, val render: CustomCapeRenderer) {
 		FIRMAMENT_ANIMATED(
-			"Animated Firmament", ParallaxedHighlightCapeRenderer(
-				Firmament.identifier("textures/cape/parallax_template.png"),
-				Firmament.identifier("textures/cape/parallax_background.png"),
-				Firmament.identifier("textures/cape/firmament_star.png"),
+			"Animated NotFirmament", ParallaxedHighlightCapeRenderer(
+				NotFirmament.identifier("textures/cape/parallax_template.png"),
+				NotFirmament.identifier("textures/cape/parallax_background.png"),
+				NotFirmament.identifier("textures/cape/notfirmament_star.png"),
 				110.seconds
 			)
 		),
 		UNPLEASANT_GRADIENT(
 			"unpleasant_gradient",
-			TexturedCapeRenderer(Firmament.identifier("textures/cape/unpleasant_gradient.png"))
+			TexturedCapeRenderer(NotFirmament.identifier("textures/cape/unpleasant_gradient.png"))
 		),
 		FURFSKY_STATIC(
 			"FurfSky",
-			TexturedCapeRenderer(Firmament.identifier("textures/cape/fsr_static.png"))
+			TexturedCapeRenderer(NotFirmament.identifier("textures/cape/fsr_static.png"))
 		),
 
 		FIRMAMENT_STATIC(
-			"Firmament",
-			TexturedCapeRenderer(Firmament.identifier("textures/cape/firm_static.png"))
+			"NotFirmament",
+			TexturedCapeRenderer(NotFirmament.identifier("textures/cape/firm_static.png"))
 		),
 		HYPIXEL_PLUS(
 			"Hypixel+",
-			TexturedCapeRenderer(Firmament.identifier("textures/cape/h_plus.png"))
+			TexturedCapeRenderer(NotFirmament.identifier("textures/cape/h_plus.png"))
 		),
 		;
 
@@ -154,12 +154,12 @@ object CustomCapes {
 		val cape = if (TConfig.showCapes) byUuid[player.uuid] else null
 		val capeStorage = CapeStorage.cast(playerEntityRenderState)
 		if (cape == null) {
-			capeStorage.cape_firmament = null
+			capeStorage.cape_notfirmament = null
 		} else {
-			capeStorage.cape_firmament = cape
+			capeStorage.cape_notfirmament = cape
 			playerEntityRenderState.skin = PlayerSkin(
 				playerEntityRenderState.skin.body,
-				ClientAsset.ResourceTexture(Firmament.identifier("placeholder/fake_cape"), Firmament.identifier("placeholder/fake_cape")),
+				ClientAsset.ResourceTexture(NotFirmament.identifier("placeholder/fake_cape"), NotFirmament.identifier("placeholder/fake_cape")),
 				playerEntityRenderState.skin.elytra,
 				playerEntityRenderState.skin.model,
 				playerEntityRenderState.skin.secure,

@@ -1,13 +1,13 @@
-package moe.nea.firmament.repo
+package moe.nea.notfirmament.repo
 
 import io.github.moulberry.repo.IReloadable
 import io.github.moulberry.repo.NEURepository
 import io.github.moulberry.repo.data.NEUItem
 import java.util.NavigableMap
 import java.util.TreeMap
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.removeColorCodes
-import moe.nea.firmament.util.skyblockId
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.removeColorCodes
+import moe.nea.notfirmament.util.skyblockId
 
 object ItemNameLookup : IReloadable {
 

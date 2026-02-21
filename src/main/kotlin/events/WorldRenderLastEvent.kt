@@ -1,6 +1,6 @@
 
 
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import net.minecraft.client.Camera
 import net.minecraft.client.DeltaTracker
@@ -16,6 +16,6 @@ data class WorldRenderLastEvent(
     val tickCounter: Int,
     val camera: CameraRenderState,
     val vertexConsumers: MultiBufferSource.BufferSource,
-) : FirmamentEvent() {
-    companion object : FirmamentEventBus<WorldRenderLastEvent>()
+) : NotFirmamentEvent() {
+    companion object : NotFirmamentEventBus<WorldRenderLastEvent>()
 }

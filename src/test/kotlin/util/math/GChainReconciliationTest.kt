@@ -1,10 +1,10 @@
-package moe.nea.firmament.test.util.math
+package moe.nea.notfirmament.test.util.math
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import moe.nea.firmament.util.math.GChainReconciliation
-import moe.nea.firmament.util.math.GChainReconciliation.rotated
+import moe.nea.notfirmament.util.math.GChainReconciliation
+import moe.nea.notfirmament.util.math.GChainReconciliation.rotated
 
 class GChainReconciliationTest  {
 

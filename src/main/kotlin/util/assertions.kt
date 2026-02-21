@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalContracts::class)
 
-package moe.nea.firmament.util
+package moe.nea.notfirmament.util
 
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind

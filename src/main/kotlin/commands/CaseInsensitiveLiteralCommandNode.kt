@@ -1,6 +1,6 @@
 
 
-package moe.nea.firmament.commands
+package moe.nea.notfirmament.commands
 
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.RedirectModifier

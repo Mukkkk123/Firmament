@@ -1,5 +1,5 @@
 
-package moe.nea.firmament.features.events.carnival
+package moe.nea.notfirmament.features.events.carnival
 
 import io.github.notenoughupdates.moulconfig.observer.ObservableList
 import io.github.notenoughupdates.moulconfig.platform.MoulConfigPlatform
@@ -13,25 +13,25 @@ import net.minecraft.network.chat.ClickEvent
 import net.minecraft.network.chat.Component
 import net.minecraft.core.BlockPos
 import net.minecraft.world.level.LevelAccessor
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.events.AttackBlockEvent
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.events.EntityUpdateEvent
-import moe.nea.firmament.events.ProcessChatEvent
-import moe.nea.firmament.events.WorldReadyEvent
-import moe.nea.firmament.events.WorldRenderLastEvent
-import moe.nea.firmament.features.debug.DebugLogger
-import moe.nea.firmament.util.LegacyFormattingCode
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MoulConfigUtils
-import moe.nea.firmament.util.ScreenUtil
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.mc.createSkullItem
-import moe.nea.firmament.util.render.RenderInWorldContext
-import moe.nea.firmament.util.setSkyBlockFirmamentUiId
-import moe.nea.firmament.util.skyBlockId
-import moe.nea.firmament.util.useMatch
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.events.AttackBlockEvent
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.events.EntityUpdateEvent
+import moe.nea.notfirmament.events.ProcessChatEvent
+import moe.nea.notfirmament.events.WorldReadyEvent
+import moe.nea.notfirmament.events.WorldRenderLastEvent
+import moe.nea.notfirmament.features.debug.DebugLogger
+import moe.nea.notfirmament.util.LegacyFormattingCode
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MoulConfigUtils
+import moe.nea.notfirmament.util.ScreenUtil
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.mc.createSkullItem
+import moe.nea.notfirmament.util.render.RenderInWorldContext
+import moe.nea.notfirmament.util.setSkyBlockNotFirmamentUiId
+import moe.nea.notfirmament.util.skyBlockId
+import moe.nea.notfirmament.util.useMatch
 
 object MinesweeperHelper {
     val sandBoxLow = BlockPos(-112, 72, -11)
@@ -116,7 +116,7 @@ object MinesweeperHelper {
 
         val textureUrl = "http://textures.minecraft.net/texture/$textureHash"
         val itemStack = createSkullItem(UUID.randomUUID(), textureUrl)
-            .setSkyBlockFirmamentUiId("MINESWEEPER_$name")
+            .setSkyBlockNotFirmamentUiId("MINESWEEPER_$name")
 		@get:Bind("fruitName")
 		val textFruitName = Component.literal(fruitName)
 
@@ -222,7 +222,7 @@ object MinesweeperHelper {
     @Subscribe
     fun onChat(event: ProcessChatEvent) {
         if (CarnivalFeatures.TConfig.displayTutorials && event.unformattedString == startGameQuestion) {
-            MC.sendChat(Component.translatable("firmament.carnival.tutorial.minesweeper").withStyle {
+            MC.sendChat(Component.translatable("notfirmament.carnival.tutorial.minesweeper").withStyle {
                 it.withClickEvent(ClickEvent.RunCommand("/firm minesweepertutorial"))
             })
         }

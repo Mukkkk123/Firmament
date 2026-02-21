@@ -1,9 +1,9 @@
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 data class PartyMessageReceivedEvent(
 	val from: ProcessChatEvent,
 	val message: String,
 	val name: String,
-) : FirmamentEvent() {
-	companion object : FirmamentEventBus<PartyMessageReceivedEvent>()
+) : NotFirmamentEvent() {
+	companion object : NotFirmamentEventBus<PartyMessageReceivedEvent>()
 }

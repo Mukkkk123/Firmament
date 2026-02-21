@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Firmament",
+  title: "NotFirmament",
   description: "Reaching for the sky on HyPixel SkyBlock",
   cleanUrls: true,
   markdown: {
@@ -28,8 +28,8 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/FirmamentMC/Firmament' },
-      { icon: 'modrinth', link: 'https://modrinth.com/mod/firmament' },
+      { icon: 'github', link: 'https://github.com/NotFirmamentMC/NotFirmament' },
+      { icon: 'modrinth', link: 'https://modrinth.com/mod/notfirmament' },
     ]
   }
 })

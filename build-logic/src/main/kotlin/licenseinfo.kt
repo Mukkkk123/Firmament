@@ -6,13 +6,13 @@ import moe.nea.licenseextractificator.LicenseExtension
 
 fun LicenseExtension.addExtraLicenseMatchers() {
     solo {
-        name = "Firmament"
+        name = "NotFirmament"
         description = "A Hypixel SkyBlock mod"
         developer("Linnea Gräf") {
             webPresence = "https://nea.moe/"
         }
         spdxLicense.`GPL-3-0-or-later`()
-        webPresence = "https://git.nea.moe/nea/Firmament/"
+        webPresence = "https://git.nea.moe/nea/NotFirmament/"
     }
     match {
         if (group == "net.minecraft") useLicense {

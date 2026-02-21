@@ -1,14 +1,14 @@
 
-package moe.nea.firmament.util.customgui
+package moe.nea.notfirmament.util.customgui
 
 import net.minecraft.world.inventory.Slot
 
 interface CoordRememberingSlot {
-    fun rememberCoords_firmament()
-    fun restoreCoords_firmament()
-    fun getOriginalX_firmament(): Int
-    fun getOriginalY_firmament(): Int
+    fun rememberCoords_notfirmament()
+    fun restoreCoords_notfirmament()
+    fun getOriginalX_notfirmament(): Int
+    fun getOriginalY_notfirmament(): Int
 }
 
-val Slot.originalX get() = (this as CoordRememberingSlot).getOriginalX_firmament()
-val Slot.originalY get() = (this as CoordRememberingSlot).getOriginalY_firmament()
+val Slot.originalX get() = (this as CoordRememberingSlot).getOriginalX_notfirmament()
+val Slot.originalY get() = (this as CoordRememberingSlot).getOriginalY_notfirmament()

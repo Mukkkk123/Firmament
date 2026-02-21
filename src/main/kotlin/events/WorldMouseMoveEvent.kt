@@ -1,5 +1,5 @@
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
-data class WorldMouseMoveEvent(val deltaX: Double, val deltaY: Double) : FirmamentEvent.Cancellable() {
-	companion object : FirmamentEventBus<WorldMouseMoveEvent>()
+data class WorldMouseMoveEvent(val deltaX: Double, val deltaY: Double) : NotFirmamentEvent.Cancellable() {
+	companion object : NotFirmamentEventBus<WorldMouseMoveEvent>()
 }

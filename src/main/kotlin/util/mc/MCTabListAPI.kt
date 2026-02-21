@@ -1,4 +1,4 @@
-package moe.nea.firmament.util.mc
+package moe.nea.notfirmament.util.mc
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
@@ -9,18 +9,18 @@ import net.minecraft.nbt.NbtOps
 import net.minecraft.world.scores.PlayerTeam
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.ComponentSerialization
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.commands.thenLiteral
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.events.TickEvent
-import moe.nea.firmament.features.debug.DeveloperFeatures
-import moe.nea.firmament.features.debug.ExportedTestConstantMeta
-import moe.nea.firmament.mixins.accessor.AccessorPlayerListHud
-import moe.nea.firmament.util.ClipboardUtils
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.intoOptional
-import moe.nea.firmament.util.mc.SNbtFormatter.Companion.toPrettyString
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.commands.thenLiteral
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.events.TickEvent
+import moe.nea.notfirmament.features.debug.DeveloperFeatures
+import moe.nea.notfirmament.features.debug.ExportedTestConstantMeta
+import moe.nea.notfirmament.mixins.accessor.AccessorPlayerListHud
+import moe.nea.notfirmament.util.ClipboardUtils
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.intoOptional
+import moe.nea.notfirmament.util.mc.SNbtFormatter.Companion.toPrettyString
 
 object MCTabListAPI {
 
@@ -79,7 +79,7 @@ object MCTabListAPI {
 		// This is a precondition for PlayerListHud.collectEntries to be valid
 		MC.networkHandler ?: return CurrentTabList(Optional.empty(), Optional.empty(), emptyList())
 		val hud = MC.inGameHud.tabList.cast()
-		val entries = hud.collectPlayerEntries_firmament()
+		val entries = hud.collectPlayerEntries_notfirmament()
 			.map {
 				it.tabListDisplayName ?: run {
 					val team = it.team
@@ -88,8 +88,8 @@ object MCTabListAPI {
 				}
 			}
 		return CurrentTabList(
-			header = hud.header_firmament.intoOptional(),
-			footer = hud.footer_firmament.intoOptional(),
+			header = hud.header_notfirmament.intoOptional(),
+			footer = hud.footer_notfirmament.intoOptional(),
 			body = entries,
 		)
 	}

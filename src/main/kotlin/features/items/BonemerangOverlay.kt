@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.items
+package moe.nea.notfirmament.features.items
 
 import me.shedaniel.math.Color
 import org.joml.Vector2i
@@ -7,16 +7,16 @@ import net.minecraft.world.entity.decoration.ArmorStand
 import net.minecraft.world.entity.player.Player
 import net.minecraft.ChatFormatting
 import net.minecraft.world.phys.AABB
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.EntityRenderTintEvent
-import moe.nea.firmament.events.HudRenderEvent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.render.TintedOverlayTexture
-import moe.nea.firmament.util.skyBlockId
-import moe.nea.firmament.util.skyblock.SkyBlockItems
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.EntityRenderTintEvent
+import moe.nea.notfirmament.events.HudRenderEvent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.render.TintedOverlayTexture
+import moe.nea.notfirmament.util.skyBlockId
+import moe.nea.notfirmament.util.skyblock.SkyBlockItems
+import moe.nea.notfirmament.util.tr
 
 object BonemerangOverlay {
 	val identifier: String
@@ -69,7 +69,7 @@ object BonemerangOverlay {
 			TintedOverlayTexture().setColor(Color.ofOpaque(ChatFormatting.BLUE.color!!))
 		}
 
-		event.renderState.overlayTexture_firmament = tintOverlay
+		event.renderState.overlayTexture_notfirmament = tintOverlay
 	}
 
 
@@ -85,7 +85,7 @@ object BonemerangOverlay {
 		it.context.drawString(
 			MC.font, String.format(
 				tr(
-					"firmament.bonemerang-overlay.bonemerang-overlay.display", "Bonemerang Targets: %s"
+					"notfirmament.bonemerang-overlay.bonemerang-overlay.display", "Bonemerang Targets: %s"
 				).string, entities.size
 			), 0, 0, -1, true
 		)

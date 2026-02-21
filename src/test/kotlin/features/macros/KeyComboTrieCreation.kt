@@ -1,14 +1,14 @@
-package moe.nea.firmament.test.features.macros
+package moe.nea.notfirmament.test.features.macros
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import com.mojang.blaze3d.platform.InputConstants
-import moe.nea.firmament.features.macros.Branch
-import moe.nea.firmament.features.macros.ComboKeyAction
-import moe.nea.firmament.features.macros.CommandAction
-import moe.nea.firmament.features.macros.KeyComboTrie
-import moe.nea.firmament.features.macros.Leaf
-import moe.nea.firmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.features.macros.Branch
+import moe.nea.notfirmament.features.macros.ComboKeyAction
+import moe.nea.notfirmament.features.macros.CommandAction
+import moe.nea.notfirmament.features.macros.KeyComboTrie
+import moe.nea.notfirmament.features.macros.Leaf
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
 
 class KeyComboTrieCreation {
 	val basicAction = CommandAction("ac Hello")

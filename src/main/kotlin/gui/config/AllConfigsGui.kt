@@ -1,20 +1,20 @@
-package moe.nea.firmament.gui.config
+package moe.nea.notfirmament.gui.config
 
 import io.github.notenoughupdates.moulconfig.observer.ObservableList
 import io.github.notenoughupdates.moulconfig.xml.Bind
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.RestArgumentType
-import moe.nea.firmament.commands.get
-import moe.nea.firmament.commands.thenArgument
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MoulConfigUtils
-import moe.nea.firmament.util.ScreenUtil.setScreenLater
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.RestArgumentType
+import moe.nea.notfirmament.commands.get
+import moe.nea.notfirmament.commands.thenArgument
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MoulConfigUtils
+import moe.nea.notfirmament.util.ScreenUtil.setScreenLater
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
 
 object AllConfigsGui {
 //
@@ -46,7 +46,7 @@ object AllConfigsGui {
 
 		class EntryMapping(val config: ManagedConfig) {
 			@Bind
-			fun name() = Component.translatable("firmament.config.${config.name}")
+			fun name() = Component.translatable("notfirmament.config.${config.name}")
 
 			@Bind
 			fun openEditor() {
@@ -82,8 +82,8 @@ object AllConfigsGui {
 			ConfigConfig.enableYacl -> "yacl"
 			else -> "builtin"
 		}
-		val provider = FirmamentConfigScreenProvider.providers.find { it.key == wantedKey }
-			?: FirmamentConfigScreenProvider.providers.first()
+		val provider = NotFirmamentConfigScreenProvider.providers.find { it.key == wantedKey }
+			?: NotFirmamentConfigScreenProvider.providers.first()
 		return provider.open(search, parent)
 	}
 

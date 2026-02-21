@@ -1,10 +1,10 @@
-package moe.nea.firmament.features.inventory.buttons
+package moe.nea.notfirmament.features.inventory.buttons
 
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.util.ErrorUtil
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.TemplateUtil
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.util.ErrorUtil
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.TemplateUtil
 
 object InventoryButtonTemplates {
 
@@ -15,9 +15,9 @@ object InventoryButtonTemplates {
 		val buttons = TemplateUtil.maybeDecodeTemplate<List<String>>(legacyPrefix, t) ?: return null
 		return buttons.mapNotNull {
 			ErrorUtil.catch<InventoryButton?>("Could not import button") {
-				Firmament.json.decodeFromString<InventoryButton>(it).also {
+				NotFirmament.json.decodeFromString<InventoryButton>(it).also {
 					if (it.icon?.startsWith("extra:") == true) {
-						MC.sendChat(Component.translatable("firmament.inventory-buttons.import-failed"))
+						MC.sendChat(Component.translatable("notfirmament.inventory-buttons.import-failed"))
 					}
 				}
 			}.or {
@@ -27,6 +27,6 @@ object InventoryButtonTemplates {
 	}
 
 	fun saveTemplate(buttons: List<InventoryButton>): String {
-		return TemplateUtil.encodeTemplate(legacyPrefix, buttons.map { Firmament.json.encodeToString(it) })
+		return TemplateUtil.encodeTemplate(legacyPrefix, buttons.map { NotFirmament.json.encodeToString(it) })
 	}
 }

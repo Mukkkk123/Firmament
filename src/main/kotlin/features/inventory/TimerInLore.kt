@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.inventory
+package moe.nea.notfirmament.features.inventory
 
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -9,17 +9,17 @@ import java.time.format.TextStyle
 import java.time.temporal.ChronoField
 import net.minecraft.network.chat.Component
 import net.minecraft.util.StringRepresentable
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.ItemTooltipEvent
-import moe.nea.firmament.util.SBData
-import moe.nea.firmament.util.aqua
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.grey
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.timestamp
-import moe.nea.firmament.util.tr
-import moe.nea.firmament.util.unformattedString
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.ItemTooltipEvent
+import moe.nea.notfirmament.util.SBData
+import moe.nea.notfirmament.util.aqua
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.grey
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.timestamp
+import moe.nea.notfirmament.util.tr
+import moe.nea.notfirmament.util.unformattedString
 
 object TimerInLore {
 	@Config
@@ -104,7 +104,7 @@ object TimerInLore {
 		if (!TConfig.showCreationTimestamp) return
 		val timestamp = event.stack.timestamp ?: return
 		val formattedTimestamp = TConfig.timerFormat.formatter.format(ZonedDateTime.ofInstant(timestamp, ZoneId.systemDefault()))
-		event.lines.add(tr("firmament.lore.creationtimestamp", "Created at: $formattedTimestamp").grey())
+		event.lines.add(tr("notfirmament.lore.creationtimestamp", "Created at: $formattedTimestamp").grey())
 	}
 
 	@Subscribe
@@ -131,8 +131,8 @@ object TimerInLore {
 					event.lines.add(
 						i + 1,
 						tr(
-							"firmament.loretimer.missingrelative",
-							"Found a relative countdown with no baseline (Firmament)"
+							"notfirmament.loretimer.missingrelative",
+							"Found a relative countdown with no baseline (NotFirmament)"
 						).grey()
 					)
 					continue

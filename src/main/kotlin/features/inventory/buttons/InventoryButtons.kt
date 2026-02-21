@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.inventory.buttons
+package moe.nea.notfirmament.features.inventory.buttons
 
 import me.shedaniel.math.Rectangle
 import kotlinx.serialization.Serializable
@@ -7,19 +7,19 @@ import kotlin.time.Duration.Companion.seconds
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.client.gui.screens.inventory.InventoryScreen
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.HandledScreenClickEvent
-import moe.nea.firmament.events.HandledScreenForegroundEvent
-import moe.nea.firmament.events.HandledScreenPushREIEvent
-import moe.nea.firmament.impl.v1.FirmamentAPIImpl
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.ScreenUtil
-import moe.nea.firmament.util.TimeMark
-import moe.nea.firmament.util.accessors.getProperRectangle
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.DataHolder
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.gold
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.HandledScreenClickEvent
+import moe.nea.notfirmament.events.HandledScreenForegroundEvent
+import moe.nea.notfirmament.events.HandledScreenPushREIEvent
+import moe.nea.notfirmament.impl.v1.NotFirmamentAPIImpl
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.ScreenUtil
+import moe.nea.notfirmament.util.TimeMark
+import moe.nea.notfirmament.util.accessors.getProperRectangle
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.DataHolder
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.gold
 
 object InventoryButtons {
 
@@ -42,7 +42,7 @@ object InventoryButtons {
 
 	fun getValidButtons(screen: AbstractContainerScreen<*>): Sequence<InventoryButton> {
 		if (TConfig.onlyInv && screen !is InventoryScreen) return emptySequence()
-		if (FirmamentAPIImpl.extensions.any { it.shouldHideInventoryButtons(screen) }) {
+		if (NotFirmamentAPIImpl.extensions.any { it.shouldHideInventoryButtons(screen) }) {
 			return emptySequence()
 		}
 		return DConfig.data.buttons.asSequence().filter(InventoryButton::isValid)

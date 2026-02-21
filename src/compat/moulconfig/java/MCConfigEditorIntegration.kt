@@ -1,4 +1,4 @@
-package moe.nea.firmament.compat.moulconfig
+package moe.nea.notfirmament.compat.moulconfig
 
 import com.google.auto.service.AutoService
 import io.github.notenoughupdates.moulconfig.ChromaColour
@@ -40,30 +40,30 @@ import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.Identifier
 import net.minecraft.util.StringRepresentable
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.gui.config.AllConfigsGui
-import moe.nea.firmament.gui.config.BooleanHandler
-import moe.nea.firmament.gui.config.ChoiceHandler
-import moe.nea.firmament.gui.config.ClickHandler
-import moe.nea.firmament.gui.config.ColourHandler
-import moe.nea.firmament.gui.config.DurationHandler
-import moe.nea.firmament.gui.config.FirmamentConfigScreenProvider
-import moe.nea.firmament.gui.config.HudMeta
-import moe.nea.firmament.gui.config.HudMetaHandler
-import moe.nea.firmament.gui.config.IntegerHandler
-import moe.nea.firmament.gui.config.KeyBindingHandler
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.gui.config.ManagedOption
-import moe.nea.firmament.gui.config.StringHandler
-import moe.nea.firmament.gui.toMoulConfig
-import moe.nea.firmament.keybindings.SavedKeyBinding
-import moe.nea.firmament.util.ErrorUtil
-import moe.nea.firmament.util.FirmFormatters
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MoulConfigUtils.xmap
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.gui.config.AllConfigsGui
+import moe.nea.notfirmament.gui.config.BooleanHandler
+import moe.nea.notfirmament.gui.config.ChoiceHandler
+import moe.nea.notfirmament.gui.config.ClickHandler
+import moe.nea.notfirmament.gui.config.ColourHandler
+import moe.nea.notfirmament.gui.config.DurationHandler
+import moe.nea.notfirmament.gui.config.NotFirmamentConfigScreenProvider
+import moe.nea.notfirmament.gui.config.HudMeta
+import moe.nea.notfirmament.gui.config.HudMetaHandler
+import moe.nea.notfirmament.gui.config.IntegerHandler
+import moe.nea.notfirmament.gui.config.KeyBindingHandler
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.gui.config.ManagedOption
+import moe.nea.notfirmament.gui.config.StringHandler
+import moe.nea.notfirmament.gui.toMoulConfig
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.util.ErrorUtil
+import moe.nea.notfirmament.util.FirmFormatters
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MoulConfigUtils.xmap
 
-@AutoService(FirmamentConfigScreenProvider::class)
-class MCConfigEditorIntegration : FirmamentConfigScreenProvider {
+@AutoService(NotFirmamentConfigScreenProvider::class)
+class MCConfigEditorIntegration : NotFirmamentConfigScreenProvider {
 	override val key: String
 		get() = "moulconfig"
 
@@ -342,7 +342,7 @@ class MCConfigEditorIntegration : FirmamentConfigScreenProvider {
 		}
 
 		override fun getTitle(): StructuredText {
-			return StructuredText.of("Firmament ${Firmament.version.friendlyString}")
+			return StructuredText.of("NotFirmament ${NotFirmament.version.friendlyString}")
 		}
 
 		@Deprecated("Deprecated in java")
@@ -371,16 +371,16 @@ class MCConfigEditorIntegration : FirmamentConfigScreenProvider {
 
 		private val socials = listOf<Social>(
 			mkSocial(
-				"Discord", Firmament.identifier("textures/socials/discord.png"),
-				Firmament.modContainer.metadata.contact.get("discord").get()
+				"Discord", NotFirmament.identifier("textures/socials/discord.png"),
+				NotFirmament.modContainer.metadata.contact.get("discord").get()
 			),
 			mkSocial(
-				"Source Code", Firmament.identifier("textures/socials/git.png"),
-				Firmament.modContainer.metadata.contact.get("sources").get()
+				"Source Code", NotFirmament.identifier("textures/socials/git.png"),
+				NotFirmament.modContainer.metadata.contact.get("sources").get()
 			),
 			mkSocial(
-				"Modrinth", Firmament.identifier("textures/socials/modrinth.png"),
-				Firmament.modContainer.metadata.contact.get("modrinth").get()
+				"Modrinth", NotFirmament.identifier("textures/socials/modrinth.png"),
+				NotFirmament.modContainer.metadata.contact.get("modrinth").get()
 			),
 		)
 
@@ -395,7 +395,7 @@ class MCConfigEditorIntegration : FirmamentConfigScreenProvider {
 			val categoryAccordionId = nextAccordionId++
 			options.add(object : ProcessedOptionFirm(-1, configObject) {
 				override fun getDebugDeclarationLocation(): String {
-					return "FirmamentConfig:${config.name}"
+					return "NotFirmamentConfig:${config.name}"
 				}
 
 				override fun getName(): StructuredText {

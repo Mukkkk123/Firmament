@@ -1,6 +1,6 @@
 @file:UseSerializers(DashlessUUIDSerializer::class)
 
-package moe.nea.firmament.util
+package moe.nea.notfirmament.util
 
 import com.mojang.serialization.Codec
 import io.github.moulberry.repo.data.NEUIngredient
@@ -26,19 +26,19 @@ import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.codec.StreamCodec
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.resources.Identifier
-import moe.nea.firmament.repo.ExpLadders
-import moe.nea.firmament.repo.ExpensiveItemCacheApi
-import moe.nea.firmament.repo.ItemCache.asItemStack
-import moe.nea.firmament.repo.ItemNameLookup
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.repo.set
-import moe.nea.firmament.util.collections.WeakCache
-import moe.nea.firmament.util.json.DashlessUUIDSerializer
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.mc.loreAccordingToNbt
-import moe.nea.firmament.util.mc.unsafeNbt
-import moe.nea.firmament.util.skyblock.ScreenIdentification
-import moe.nea.firmament.util.skyblock.ScreenType
+import moe.nea.notfirmament.repo.ExpLadders
+import moe.nea.notfirmament.repo.ExpensiveItemCacheApi
+import moe.nea.notfirmament.repo.ItemCache.asItemStack
+import moe.nea.notfirmament.repo.ItemNameLookup
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.repo.set
+import moe.nea.notfirmament.util.collections.WeakCache
+import moe.nea.notfirmament.util.json.DashlessUUIDSerializer
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.mc.loreAccordingToNbt
+import moe.nea.notfirmament.util.mc.unsafeNbt
+import moe.nea.notfirmament.util.skyblock.ScreenIdentification
+import moe.nea.notfirmament.util.skyblock.ScreenType
 
 /**
  * A SkyBlock item id, as used by the NEU repo.
@@ -205,7 +205,7 @@ fun ItemStack.getReforgeId(): ReforgeId? {
 val ItemStack.petData: HypixelPetInfo?
 	get() = petDataCache(this).getOrNull()
 
-fun ItemStack.setSkyBlockFirmamentUiId(uiId: String) = setSkyBlockId(SkyblockId("FIRMAMENT_UI_$uiId"))
+fun ItemStack.setSkyBlockNotFirmamentUiId(uiId: String) = setSkyBlockId(SkyblockId("FIRMAMENT_UI_$uiId"))
 fun ItemStack.setSkyBlockId(skyblockId: SkyblockId): ItemStack {
 	this.extraAttributes["id"] = skyblockId.neuItem
 	return this

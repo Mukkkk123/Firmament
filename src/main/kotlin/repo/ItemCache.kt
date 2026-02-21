@@ -1,4 +1,4 @@
-package moe.nea.firmament.repo
+package moe.nea.notfirmament.repo
 
 import com.mojang.serialization.Dynamic
 import io.github.moulberry.repo.IReloadable
@@ -34,30 +34,30 @@ import net.minecraft.util.datafix.fixes.References
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.component.CustomData
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.features.debug.ExportedTestConstantMeta
-import moe.nea.firmament.repo.RepoManager.initialize
-import moe.nea.firmament.util.LegacyFormattingCode
-import moe.nea.firmament.util.LegacyTagParser
-import moe.nea.firmament.util.MinecraftDispatcher
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.TestUtil
-import moe.nea.firmament.util.directLiteralStringContent
-import moe.nea.firmament.util.mc.FirmamentDataComponentTypes
-import moe.nea.firmament.util.mc.appendLore
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.mc.loadItemFromNbt
-import moe.nea.firmament.util.mc.loreAccordingToNbt
-import moe.nea.firmament.util.mc.modifyLore
-import moe.nea.firmament.util.mc.setCustomName
-import moe.nea.firmament.util.mc.setSkullOwner
-import moe.nea.firmament.util.skyblockId
-import moe.nea.firmament.util.transformEachRecursively
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.features.debug.ExportedTestConstantMeta
+import moe.nea.notfirmament.repo.RepoManager.initialize
+import moe.nea.notfirmament.util.LegacyFormattingCode
+import moe.nea.notfirmament.util.LegacyTagParser
+import moe.nea.notfirmament.util.MinecraftDispatcher
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.TestUtil
+import moe.nea.notfirmament.util.directLiteralStringContent
+import moe.nea.notfirmament.util.mc.NotFirmamentDataComponentTypes
+import moe.nea.notfirmament.util.mc.appendLore
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.mc.loadItemFromNbt
+import moe.nea.notfirmament.util.mc.loreAccordingToNbt
+import moe.nea.notfirmament.util.mc.modifyLore
+import moe.nea.notfirmament.util.mc.setCustomName
+import moe.nea.notfirmament.util.mc.setSkullOwner
+import moe.nea.notfirmament.util.skyblockId
+import moe.nea.notfirmament.util.transformEachRecursively
 
 object ItemCache : IReloadable {
 	private val cache: MutableMap<String, ItemStack> = ConcurrentHashMap()
 	private val df = DataFixers.getDataFixer()
-	val logger = LogManager.getLogger("${Firmament.logger.name}.ItemCache")
+	val logger = LogManager.getLogger("${NotFirmament.logger.name}.ItemCache")
 	var isFlawless = true
 		private set
 
@@ -88,7 +88,7 @@ object ItemCache : IReloadable {
 		}
 
 	val ItemStack.isBroken
-		get() = get(FirmamentDataComponentTypes.IS_BROKEN) ?: false
+		get() = get(NotFirmamentDataComponentTypes.IS_BROKEN) ?: false
 
 	fun ItemStack.withFallback(fallback: ItemStack?): ItemStack {
 		if (isBroken && fallback != null) return fallback
@@ -101,7 +101,7 @@ object ItemCache : IReloadable {
 			appendLore(
 				listOf(
 					Component.translatableEscape(
-						"firmament.repo.brokenitem",
+						"notfirmament.repo.brokenitem",
 						(neuItem?.skyblockItemId ?: idHint ?: "null")
 					)
 				)
@@ -109,7 +109,7 @@ object ItemCache : IReloadable {
 			set(DataComponents.CUSTOM_DATA, CustomData.of(CompoundTag().apply {
 				put("ID", StringTag.valueOf(neuItem?.skyblockItemId ?: idHint?.neuItem ?: "null"))
 			}))
-			set(FirmamentDataComponentTypes.IS_BROKEN, true)
+			set(NotFirmamentDataComponentTypes.IS_BROKEN, true)
 		}
 	}
 
@@ -254,8 +254,8 @@ object ItemCache : IReloadable {
 		if (TestUtil.isInTest) return
 		val newScope =
 			CoroutineScope(
-				Firmament.coroutineScope.coroutineContext +
-					SupervisorJob(Firmament.globalJob) +
+				NotFirmament.coroutineScope.coroutineContext +
+					SupervisorJob(NotFirmament.globalJob) +
 					Dispatchers.Default.limitedParallelism(
 						(Runtime.getRuntime().availableProcessors() / 4).coerceAtLeast(1)
 					)

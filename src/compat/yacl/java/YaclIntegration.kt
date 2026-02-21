@@ -1,4 +1,4 @@
-package moe.nea.firmament.compat.yacl
+package moe.nea.notfirmament.compat.yacl
 
 import com.google.auto.service.AutoService
 import dev.isxander.yacl3.api.Binding
@@ -27,28 +27,28 @@ import net.minecraft.client.gui.components.events.GuiEventListener
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.client.gui.components.AbstractContainerWidget
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.gui.config.BooleanHandler
-import moe.nea.firmament.gui.config.ChoiceHandler
-import moe.nea.firmament.gui.config.ClickHandler
-import moe.nea.firmament.gui.config.ColourHandler
-import moe.nea.firmament.gui.config.DurationHandler
-import moe.nea.firmament.gui.config.EnumRenderer
-import moe.nea.firmament.gui.config.FirmamentConfigScreenProvider
-import moe.nea.firmament.gui.config.HudMeta
-import moe.nea.firmament.gui.config.HudMetaHandler
-import moe.nea.firmament.gui.config.IntegerHandler
-import moe.nea.firmament.gui.config.KeyBindingHandler
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.gui.config.ManagedOption
-import moe.nea.firmament.gui.config.StringHandler
-import moe.nea.firmament.keybindings.SavedKeyBinding
-import moe.nea.firmament.util.FirmFormatters
-import moe.nea.firmament.util.getRGBAWithoutAnimation
-import moe.nea.firmament.util.toChromaWithoutAnimation
+import moe.nea.notfirmament.gui.config.BooleanHandler
+import moe.nea.notfirmament.gui.config.ChoiceHandler
+import moe.nea.notfirmament.gui.config.ClickHandler
+import moe.nea.notfirmament.gui.config.ColourHandler
+import moe.nea.notfirmament.gui.config.DurationHandler
+import moe.nea.notfirmament.gui.config.EnumRenderer
+import moe.nea.notfirmament.gui.config.NotFirmamentConfigScreenProvider
+import moe.nea.notfirmament.gui.config.HudMeta
+import moe.nea.notfirmament.gui.config.HudMetaHandler
+import moe.nea.notfirmament.gui.config.IntegerHandler
+import moe.nea.notfirmament.gui.config.KeyBindingHandler
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.gui.config.ManagedOption
+import moe.nea.notfirmament.gui.config.StringHandler
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.util.FirmFormatters
+import moe.nea.notfirmament.util.getRGBAWithoutAnimation
+import moe.nea.notfirmament.util.toChromaWithoutAnimation
 
 
-@AutoService(FirmamentConfigScreenProvider::class)
-class YaclIntegration : FirmamentConfigScreenProvider {
+@AutoService(NotFirmamentConfigScreenProvider::class)
+class YaclIntegration : NotFirmamentConfigScreenProvider {
 	fun buildCategories() =
 		ManagedConfig.Category.entries
 			.map(::buildCategory)
@@ -196,7 +196,7 @@ class YaclIntegration : FirmamentConfigScreenProvider {
 
 	fun buildConfig(): YetAnotherConfigLib {
 		return YetAnotherConfigLib.createBuilder()
-			.title(Component.literal("Firmament"))
+			.title(Component.literal("NotFirmament"))
 			.categories(buildCategories())
 			.build()
 	}
