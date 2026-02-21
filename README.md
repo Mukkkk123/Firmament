@@ -3,7 +3,7 @@ SPDX-FileCopyrightText: 2023 Linnea Gräf <nea@nea.moe>
 
 SPDX-License-Identifier: CC0-1.0
 -->
-This is NotFirmament. all base commands have been changed to /notfirmament.
+#This is NotFirmament. all base commands have been changed to /notfirmament.
 
 
 <div align="center">
