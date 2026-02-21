@@ -1,8 +1,8 @@
 {
     "schemaVersion": 1,
-    "id": "notfirmament",
+    "id": "f1",
     "version": "${version}",
-    "name": "NotFirmament",
+    "name": "f1",
     "description": "NotFirmament powered by NEU",
     "authors": [
         {
