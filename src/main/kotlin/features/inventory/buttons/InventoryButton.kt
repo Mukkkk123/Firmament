@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.inventory.buttons
+package moe.nea.notfirmament.features.inventory.buttons
 
 import com.mojang.brigadier.StringReader
 import me.shedaniel.math.Dimension
@@ -13,17 +13,17 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.flag.FeatureFlags
 import net.minecraft.resources.Identifier
-import moe.nea.firmament.repo.ExpensiveItemCacheApi
-import moe.nea.firmament.repo.ItemCache.asItemStack
-import moe.nea.firmament.repo.ItemCache.isBroken
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.util.ErrorUtil
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.collections.memoize
-import moe.nea.firmament.util.mc.arbitraryUUID
-import moe.nea.firmament.util.mc.createSkullItem
-import moe.nea.firmament.util.render.drawGuiTexture
+import moe.nea.notfirmament.repo.ExpensiveItemCacheApi
+import moe.nea.notfirmament.repo.ItemCache.asItemStack
+import moe.nea.notfirmament.repo.ItemCache.isBroken
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.util.ErrorUtil
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.collections.memoize
+import moe.nea.notfirmament.util.mc.arbitraryUUID
+import moe.nea.notfirmament.util.mc.createSkullItem
+import moe.nea.notfirmament.util.render.drawGuiTexture
 
 @Serializable
 data class InventoryButton(
@@ -92,7 +92,7 @@ data class InventoryButton(
 	fun render(context: GuiGraphics) {
 		context.blitSprite(
 			RenderPipelines.GUI_TEXTURED,
-			Identifier.parse("firmament:inventory_button_background"),
+			Identifier.parse("notfirmament:inventory_button_background"),
 			0,
 			0,
 			myDimension.width,

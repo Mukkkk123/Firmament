@@ -1,12 +1,12 @@
-package moe.nea.firmament.features.debug
+package moe.nea.notfirmament.features.debug
 
 import kotlinx.serialization.serializer
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.TestUtil
-import moe.nea.firmament.util.collections.InstanceList
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.DataHolder
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.TestUtil
+import moe.nea.notfirmament.util.collections.InstanceList
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.DataHolder
 
 class DebugLogger(val tag: String) {
 	companion object {

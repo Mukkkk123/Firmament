@@ -1,21 +1,21 @@
 
 
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.tree.LiteralCommandNode
 import net.minecraft.commands.CommandBuildContext
-import moe.nea.firmament.commands.CaseInsensitiveLiteralCommandNode
-import moe.nea.firmament.commands.DefaultSource
-import moe.nea.firmament.commands.literal
-import moe.nea.firmament.commands.thenLiteral
+import moe.nea.notfirmament.commands.CaseInsensitiveLiteralCommandNode
+import moe.nea.notfirmament.commands.DefaultSource
+import moe.nea.notfirmament.commands.literal
+import moe.nea.notfirmament.commands.thenLiteral
 
 data class CommandEvent(
     val dispatcher: CommandDispatcher<DefaultSource>,
     val ctx: CommandBuildContext,
     val serverCommands: CommandDispatcher<*>?,
-) : FirmamentEvent() {
-    companion object : FirmamentEventBus<CommandEvent>()
+) : NotFirmamentEvent() {
+    companion object : NotFirmamentEventBus<CommandEvent>()
 
     /**
      * Register subcommands to `/firm`. For new top level commands use [CommandEvent]. Cannot be used to register
@@ -24,8 +24,8 @@ data class CommandEvent(
     data class SubCommand(
         val builder: CaseInsensitiveLiteralCommandNode.Builder<DefaultSource>,
         val commandRegistryAccess: CommandBuildContext,
-    ) : FirmamentEvent() {
-        companion object : FirmamentEventBus<SubCommand>()
+    ) : NotFirmamentEvent() {
+        companion object : NotFirmamentEventBus<SubCommand>()
 
         fun subcommand(name: String, block: CaseInsensitiveLiteralCommandNode.Builder<DefaultSource>.() -> Unit) {
             builder.thenLiteral(name, block)

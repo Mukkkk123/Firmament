@@ -1,4 +1,4 @@
-package moe.nea.firmament.util
+package moe.nea.notfirmament.util
 
 import io.github.moulberry.repo.data.Coordinate
 import io.github.notenoughupdates.moulconfig.platform.MoulConfigScreenComponent
@@ -30,10 +30,10 @@ import net.minecraft.resources.Identifier
 import net.minecraft.core.BlockPos
 import net.minecraft.util.Util
 import net.minecraft.world.level.Level
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.events.TickEvent
-import moe.nea.firmament.events.WorldReadyEvent
-import moe.nea.firmament.util.mc.TolerantRegistriesOps
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.events.TickEvent
+import moe.nea.notfirmament.events.WorldReadyEvent
+import moe.nea.notfirmament.util.mc.TolerantRegistriesOps
 
 object MC {
 
@@ -56,7 +56,7 @@ object MC {
 
 	fun sendChat(text: Component) {
 		if (TestUtil.isInTest) {
-			Firmament.logger.info("CHAT: ${text.string}")
+			NotFirmament.logger.info("CHAT: ${text.string}")
 			return
 		}
 		if (instance.isSameThread && inGameHud.chat != null && world != null)

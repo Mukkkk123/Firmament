@@ -1,16 +1,16 @@
 @file:OptIn(ExperimentalContracts::class)
 
-package moe.nea.firmament.util
+package moe.nea.notfirmament.util
 
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
-import moe.nea.firmament.Firmament
+import moe.nea.notfirmament.NotFirmament
 
 @Suppress("NOTHING_TO_INLINE") // Suppressed since i want the logger to not pick up the ErrorUtil stack-frame
 object ErrorUtil {
 	var aggressiveErrors = run {
-		TestUtil.isInTest || Firmament.DEBUG
+		TestUtil.isInTest || NotFirmament.DEBUG
 			|| ErrorUtil::class.java.desiredAssertionStatus()
 	}
 
@@ -33,10 +33,10 @@ object ErrorUtil {
 	}
 
 	fun logError(message: String, exception: Throwable) {
-		Firmament.logger.error(message, exception)
+		NotFirmament.logger.error(message, exception)
 	}
 	fun logError(message: String) {
-		Firmament.logger.error(message)
+		NotFirmament.logger.error(message)
 	}
 
 	inline fun softError(message: String) {
@@ -92,6 +92,6 @@ object ErrorUtil {
 	fun softUserError(string: String) {
 		if (TestUtil.isInTest)
 			error(string)
-		MC.sendChat(tr("firmament.usererror", "Firmament encountered a user caused error: $string"))
+		MC.sendChat(tr("notfirmament.usererror", "NotFirmament encountered a user caused error: $string"))
 	}
 }

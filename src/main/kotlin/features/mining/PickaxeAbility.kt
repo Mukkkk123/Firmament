@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.mining
+package moe.nea.notfirmament.features.mining
 
 import io.github.notenoughupdates.moulconfig.ChromaColour
 import java.util.regex.Pattern
@@ -12,35 +12,35 @@ import net.minecraft.util.StringRepresentable
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.ItemStack
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.HudRenderEvent
-import moe.nea.firmament.events.ProcessChatEvent
-import moe.nea.firmament.events.ProfileSwitchEvent
-import moe.nea.firmament.events.SlotClickEvent
-import moe.nea.firmament.events.WorldReadyEvent
-import moe.nea.firmament.util.DurabilityBarEvent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.SBData
-import moe.nea.firmament.util.SHORT_NUMBER_FORMAT
-import moe.nea.firmament.util.SkyBlockIsland
-import moe.nea.firmament.util.TIME_PATTERN
-import moe.nea.firmament.util.TimeMark
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.extraAttributes
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.mc.loreAccordingToNbt
-import moe.nea.firmament.util.parseShortNumber
-import moe.nea.firmament.util.parseTimePattern
-import moe.nea.firmament.util.render.RenderCircleProgress
-import moe.nea.firmament.util.render.lerp
-import moe.nea.firmament.util.skyblock.AbilityUtils
-import moe.nea.firmament.util.skyblock.DungeonUtil
-import moe.nea.firmament.util.skyblock.ItemType
-import moe.nea.firmament.util.toShedaniel
-import moe.nea.firmament.util.tr
-import moe.nea.firmament.util.unformattedString
-import moe.nea.firmament.util.useMatch
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.HudRenderEvent
+import moe.nea.notfirmament.events.ProcessChatEvent
+import moe.nea.notfirmament.events.ProfileSwitchEvent
+import moe.nea.notfirmament.events.SlotClickEvent
+import moe.nea.notfirmament.events.WorldReadyEvent
+import moe.nea.notfirmament.util.DurabilityBarEvent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.SBData
+import moe.nea.notfirmament.util.SHORT_NUMBER_FORMAT
+import moe.nea.notfirmament.util.SkyBlockIsland
+import moe.nea.notfirmament.util.TIME_PATTERN
+import moe.nea.notfirmament.util.TimeMark
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.extraAttributes
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.mc.loreAccordingToNbt
+import moe.nea.notfirmament.util.parseShortNumber
+import moe.nea.notfirmament.util.parseTimePattern
+import moe.nea.notfirmament.util.render.RenderCircleProgress
+import moe.nea.notfirmament.util.render.lerp
+import moe.nea.notfirmament.util.skyblock.AbilityUtils
+import moe.nea.notfirmament.util.skyblock.DungeonUtil
+import moe.nea.notfirmament.util.skyblock.ItemType
+import moe.nea.notfirmament.util.toShedaniel
+import moe.nea.notfirmament.util.tr
+import moe.nea.notfirmament.util.unformattedString
+import moe.nea.notfirmament.util.useMatch
 
 object PickaxeAbility {
 	val identifier: String
@@ -158,8 +158,8 @@ object PickaxeAbility {
 				SystemToast.multiline(
 					mc,
 					SystemToast.SystemToastId.NARRATOR_TOGGLE,
-					tr("firmament.pickaxe.ability-ready", "Pickaxe Cooldown"),
-					tr("firmament.pickaxe.ability-ready.desc", "Pickaxe ability is ready!")
+					tr("notfirmament.pickaxe.ability-ready", "Pickaxe Cooldown"),
+					tr("notfirmament.pickaxe.ability-ready.desc", "Pickaxe ability is ready!")
 				)
 			)
 		}
@@ -220,7 +220,7 @@ object PickaxeAbility {
 		event.context.pose().translate(MC.window.guiScaledWidth / 2F, MC.window.guiScaledHeight / 2F)
 		event.context.pose().scale(TConfig.cooldownScale.toFloat(), TConfig.cooldownScale.toFloat())
 		RenderCircleProgress.renderCircle(
-			event.context, Identifier.fromNamespaceAndPath("firmament", "textures/gui/circle.png"),
+			event.context, Identifier.fromNamespaceAndPath("notfirmament", "textures/gui/circle.png"),
 			getCooldownPercentage(ability.name, ability.cooldown).toFloat(),
 			0f, 1f, 0f, 1f,
 			color = TConfig.cooldownColour.getEffectiveColourRGB()

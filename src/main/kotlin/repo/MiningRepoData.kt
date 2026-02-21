@@ -1,4 +1,4 @@
-package moe.nea.firmament.repo
+package moe.nea.notfirmament.repo
 
 import io.github.moulberry.repo.IReloadable
 import io.github.moulberry.repo.NEURepository
@@ -14,14 +14,14 @@ import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.ItemStack
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.repo.ReforgeStore.kJson
-import moe.nea.firmament.util.SBData
-import moe.nea.firmament.util.SkyBlockIsland
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.mc.FirmamentDataComponentTypes
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.mc.loadItemFromNbt
-import moe.nea.firmament.util.skyblockId
+import moe.nea.notfirmament.repo.ReforgeStore.kJson
+import moe.nea.notfirmament.util.SBData
+import moe.nea.notfirmament.util.SkyBlockIsland
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.mc.NotFirmamentDataComponentTypes
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.mc.loadItemFromNbt
+import moe.nea.notfirmament.util.skyblockId
 
 class MiningRepoData : IReloadable {
 	var customMiningAreas: Map<SkyBlockIsland, CustomMiningArea> = mapOf()
@@ -85,7 +85,7 @@ class MiningRepoData : IReloadable {
 		}
 
 		private fun markItemStack(itemStack: ItemStack) {
-			itemStack.set(FirmamentDataComponentTypes.CUSTOM_MINING_BLOCK_DATA, this)
+			itemStack.set(NotFirmamentDataComponentTypes.CUSTOM_MINING_BLOCK_DATA, this)
 			if (name != null)
 				itemStack.displayNameAccordingToNbt = Component.literal(name)
 		}

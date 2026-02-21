@@ -1,4 +1,4 @@
-package moe.nea.firmament.repo
+package moe.nea.notfirmament.repo
 
 import java.io.InputStream
 import java.nio.file.Files
@@ -25,12 +25,12 @@ import net.minecraft.server.packs.metadata.MetadataSectionType
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.Identifier
 import net.minecraft.util.FileUtil
-import moe.nea.firmament.Firmament
+import moe.nea.notfirmament.NotFirmament
 
 class RepoModResourcePack(val basePath: Path) : ModResourcePack {
 	companion object {
 		fun append(packs: ModPackResourcesSorter) {
-			Firmament.logger.info("Registering mod resource pack")
+			NotFirmament.logger.info("Registering mod resource pack")
 			packs.addPack(RepoModResourcePack(RepoDownloadManager.repoSavedLocation))
 		}
 
@@ -120,7 +120,7 @@ class RepoModResourcePack(val basePath: Path) : ModResourcePack {
 	}
 
 	override fun getFabricModMetadata(): ModMetadata {
-		return FabricLoader.getInstance().getModContainer("firmament")
+		return FabricLoader.getInstance().getModContainer("notfirmament")
 			.get().metadata
 	}
 

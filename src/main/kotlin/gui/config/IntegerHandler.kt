@@ -1,6 +1,6 @@
 
 
-package moe.nea.firmament.gui.config
+package moe.nea.notfirmament.gui.config
 
 import io.github.notenoughupdates.moulconfig.common.IMinecraft
 import io.github.notenoughupdates.moulconfig.common.text.StructuredText
@@ -12,8 +12,8 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonPrimitive
-import moe.nea.firmament.util.FirmFormatters
-import moe.nea.firmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.FirmFormatters
+import moe.nea.notfirmament.util.data.ManagedConfig
 
 class IntegerHandler(val config: ManagedConfig, val min: Int, val max: Int) : ManagedConfig.OptionHandler<Int> {
     override fun toJson(element: Int): JsonElement? {

@@ -1,4 +1,4 @@
-package moe.nea.firmament.gui.config
+package moe.nea.notfirmament.gui.config
 
 import io.github.notenoughupdates.moulconfig.common.IMinecraft
 import io.github.notenoughupdates.moulconfig.common.MyResourceLocation
@@ -10,10 +10,10 @@ import io.github.notenoughupdates.moulconfig.platform.MoulConfigPlatform
 import org.lwjgl.glfw.GLFW
 import net.minecraft.network.chat.Component
 import net.minecraft.ChatFormatting
-import moe.nea.firmament.gui.FirmButtonComponent
-import moe.nea.firmament.keybindings.GenericInputButton
-import moe.nea.firmament.keybindings.InputModifiers
-import moe.nea.firmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.gui.FirmButtonComponent
+import moe.nea.notfirmament.keybindings.GenericInputButton
+import moe.nea.notfirmament.keybindings.InputModifiers
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
 
 class KeyBindingStateManager(
 	val value: () -> SavedKeyBinding,

@@ -1,27 +1,27 @@
-package moe.nea.firmament.util.skyblock
+package moe.nea.notfirmament.util.skyblock
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
 import net.minecraft.client.gui.screens.inventory.ContainerScreen
 import net.minecraft.network.chat.HoverEvent
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.ChestInventoryUpdateEvent
-import moe.nea.firmament.events.ProcessChatEvent
-import moe.nea.firmament.gui.config.storage.ConfigFixEvent
-import moe.nea.firmament.gui.config.storage.ConfigStorageClass
-import moe.nea.firmament.repo.ItemNameLookup
-import moe.nea.firmament.util.SHORT_NUMBER_FORMAT
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ProfileSpecificDataHolder
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.mc.iterableView
-import moe.nea.firmament.util.mc.loreAccordingToNbt
-import moe.nea.firmament.util.parseShortNumber
-import moe.nea.firmament.util.skyBlockId
-import moe.nea.firmament.util.unformattedString
-import moe.nea.firmament.util.useMatch
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.ChestInventoryUpdateEvent
+import moe.nea.notfirmament.events.ProcessChatEvent
+import moe.nea.notfirmament.gui.config.storage.ConfigFixEvent
+import moe.nea.notfirmament.gui.config.storage.ConfigStorageClass
+import moe.nea.notfirmament.repo.ItemNameLookup
+import moe.nea.notfirmament.util.SHORT_NUMBER_FORMAT
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ProfileSpecificDataHolder
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.mc.iterableView
+import moe.nea.notfirmament.util.mc.loreAccordingToNbt
+import moe.nea.notfirmament.util.parseShortNumber
+import moe.nea.notfirmament.util.skyBlockId
+import moe.nea.notfirmament.util.unformattedString
+import moe.nea.notfirmament.util.useMatch
 
 object SackUtil {
 	@Serializable

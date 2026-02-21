@@ -1,10 +1,10 @@
-package moe.nea.firmament.features
+package moe.nea.notfirmament.features
 
-import moe.nea.firmament.events.FirmamentEvent
-import moe.nea.firmament.events.subscription.Subscription
-import moe.nea.firmament.events.subscription.SubscriptionList
-import moe.nea.firmament.util.ErrorUtil
-import moe.nea.firmament.util.compatloader.ICompatMeta
+import moe.nea.notfirmament.events.NotFirmamentEvent
+import moe.nea.notfirmament.events.subscription.Subscription
+import moe.nea.notfirmament.events.subscription.SubscriptionList
+import moe.nea.notfirmament.util.ErrorUtil
+import moe.nea.notfirmament.util.compatloader.ICompatMeta
 
 object FeatureManager {
 
@@ -19,7 +19,7 @@ object FeatureManager {
 		}
 	}
 
-	private fun <T : FirmamentEvent> subscribeSingleEvent(it: Subscription<T>) {
+	private fun <T : NotFirmamentEvent> subscribeSingleEvent(it: Subscription<T>) {
 		it.eventBus.subscribe(false, "${it.owner.javaClass.simpleName}:${it.methodName}", it.invoke)
 	}
 }

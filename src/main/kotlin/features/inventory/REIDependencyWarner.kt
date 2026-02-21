@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.inventory
+package moe.nea.notfirmament.features.inventory
 
 import java.net.URI
 import net.fabricmc.loader.api.FabricLoader
@@ -8,22 +8,22 @@ import kotlin.time.Duration.Companion.seconds
 import net.minecraft.SharedConstants
 import net.minecraft.network.chat.ClickEvent
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.events.SkyblockServerUpdateEvent
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.SBData
-import moe.nea.firmament.util.aqua
-import moe.nea.firmament.util.bold
-import moe.nea.firmament.util.clickCommand
-import moe.nea.firmament.util.grey
-import moe.nea.firmament.util.lime
-import moe.nea.firmament.util.red
-import moe.nea.firmament.util.white
-import moe.nea.firmament.util.yellow
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.events.SkyblockServerUpdateEvent
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.SBData
+import moe.nea.notfirmament.util.aqua
+import moe.nea.notfirmament.util.bold
+import moe.nea.notfirmament.util.clickCommand
+import moe.nea.notfirmament.util.grey
+import moe.nea.notfirmament.util.lime
+import moe.nea.notfirmament.util.red
+import moe.nea.notfirmament.util.white
+import moe.nea.notfirmament.util.yellow
 
 object REIDependencyWarner {
 	val reiModId = "roughlyenoughitems"
@@ -38,12 +38,12 @@ object REIDependencyWarner {
 		return Component.literal(" - ")
 			.white()
 			.append(Component.literal("[").aqua())
-			.append(Component.translatable("firmament.download", modName)
+			.append(Component.translatable("notfirmament.download", modName)
 				        .withStyle { it.withClickEvent(ClickEvent.OpenUrl(URI (modrinthLink(slug)))) }
 				        .yellow()
 				        .also {
 					        if (alreadyDownloaded)
-						        it.append(Component.translatable("firmament.download.already", modName)
+						        it.append(Component.translatable("notfirmament.download.already", modName)
 							                  .lime())
 				        })
 			.append(Component.literal("]").aqua())
@@ -56,15 +56,15 @@ object REIDependencyWarner {
 		if (hasREI) return
 		if (sentWarning) return
 		sentWarning = true
-		Firmament.coroutineScope.launch {
+		NotFirmament.coroutineScope.launch {
 			delay(2.seconds)
 			// TODO: should we offer an automatic install that actually downloads the JARs and places them into the mod folder?
 			MC.sendChat(
-				Component.translatable("firmament.reiwarning").red().bold().append("\n")
+				Component.translatable("notfirmament.reiwarning").red().bold().append("\n")
 					.append(downloadButton("RoughlyEnoughItems", reiModId, "rei")).append("\n")
 					.append(downloadButton("Architectury API", "architectury", "architectury-api")).append("\n")
 					.append(downloadButton("Cloth Config API", "cloth-config", "cloth-config")).append("\n")
-					.append(Component.translatable("firmament.reiwarning.disable")
+					.append(Component.translatable("notfirmament.reiwarning.disable")
 						        .clickCommand("/firm disablereiwarning")
 						        .grey())
 			)
@@ -78,7 +78,7 @@ object REIDependencyWarner {
 			thenExecute {
 				RepoManager.TConfig.warnForMissingItemListMod = false
 				RepoManager.TConfig.markDirty()
-				MC.sendChat(Component.translatable("firmament.reiwarning.disabled").yellow())
+				MC.sendChat(Component.translatable("notfirmament.reiwarning.disabled").yellow())
 			}
 		}
 	}

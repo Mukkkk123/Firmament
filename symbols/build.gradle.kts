@@ -1,7 +1,7 @@
 plugins {
     kotlin("jvm")
     id("com.google.devtools.ksp")
-	id("firmament.common")
+	id("notfirmament.common")
 }
 
 dependencies {

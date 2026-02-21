@@ -1,4 +1,4 @@
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import com.mojang.datafixers.util.Pair
 import net.minecraft.world.entity.Entity
@@ -7,8 +7,8 @@ import net.minecraft.world.entity.LivingEntity
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.world.item.ItemStack
 import net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.util.MC
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.util.MC
 
 /**
  * This event is fired when some entity properties are updated.
@@ -16,8 +16,8 @@ import moe.nea.firmament.util.MC
  * like health, tracked data, names, equipment. It is always fired
  * *after* the values have been applied to the entity.
  */
-sealed class EntityUpdateEvent : FirmamentEvent() {
-	companion object : FirmamentEventBus<EntityUpdateEvent>() {
+sealed class EntityUpdateEvent : NotFirmamentEvent() {
+	companion object : NotFirmamentEventBus<EntityUpdateEvent>() {
 		@Subscribe
 		fun onPlayerInventoryUpdate(event: PlayerInventoryUpdate) {
 			val p = MC.player ?: return

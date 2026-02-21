@@ -1,14 +1,14 @@
-package moe.nea.firmament.features.inventory
+package moe.nea.notfirmament.features.inventory
 
 import org.lwjgl.glfw.GLFW
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.world.item.Items
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.HandledScreenKeyPressedEvent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.mc.SlotUtils.clickLeftMouseButton
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.HandledScreenKeyPressedEvent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.mc.SlotUtils.clickLeftMouseButton
 
 object WardrobeKeybinds {
 	@Config

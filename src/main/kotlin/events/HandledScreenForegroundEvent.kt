@@ -1,6 +1,6 @@
 
 
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
@@ -11,6 +11,6 @@ data class HandledScreenForegroundEvent(
     val mouseX: Int,
     val mouseY: Int,
     val delta: Float
-) : FirmamentEvent() {
-    companion object : FirmamentEventBus<HandledScreenForegroundEvent>()
+) : NotFirmamentEvent() {
+    companion object : NotFirmamentEventBus<HandledScreenForegroundEvent>()
 }

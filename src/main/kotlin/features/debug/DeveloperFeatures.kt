@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.debug
+package moe.nea.notfirmament.features.debug
 
 import java.io.File
 import java.nio.file.Path
@@ -12,17 +12,17 @@ import kotlin.io.path.absolute
 import kotlin.io.path.exists
 import net.minecraft.client.Minecraft
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.DebugInstantiateEvent
-import moe.nea.firmament.events.TickEvent
-import moe.nea.firmament.init.MixinPlugin
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.TimeMark
-import moe.nea.firmament.util.asm.AsmAnnotationUtil
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.iterate
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.DebugInstantiateEvent
+import moe.nea.notfirmament.events.TickEvent
+import moe.nea.notfirmament.init.MixinPlugin
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.TimeMark
+import moe.nea.notfirmament.util.asm.AsmAnnotationUtil
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.iterate
 
 object DeveloperFeatures {
 	val DEVELOPER_SUBCOMMAND: String = "dev"
@@ -69,16 +69,16 @@ object DeveloperFeatures {
 				}
 				for (target in targets)
 					try {
-						Firmament.logger.debug("Loading ${target} to force instantiate ${cls}")
+						NotFirmament.logger.debug("Loading ${target} to force instantiate ${cls}")
 						Class.forName(target, true, javaClass.classLoader)
 					} catch (ex: Throwable) {
-						Firmament.logger.error("Could not load class ${target} that has been mixind by $cls", ex)
+						NotFirmament.logger.error("Could not load class ${target} that has been mixind by $cls", ex)
 					}
 			}
 		}
-		Firmament.logger.info("Forceloaded all Firmament mixins:")
+		NotFirmament.logger.info("Forceloaded all NotFirmament mixins:")
 		val applied = MixinPlugin.instances.flatMap { it.appliedMixins }.toSet()
-		applied.forEach { Firmament.logger.info(" - ${it}") }
+		applied.forEach { NotFirmament.logger.info(" - ${it}") }
 		require(allMixinClasses == applied)
 	}
 
@@ -87,23 +87,23 @@ object DeveloperFeatures {
 		val toDump = missingTranslations ?: return
 		missingTranslations = null
 		File("missing_translations.json").outputStream().use {
-			Firmament.json.encodeToStream(toDump.associateWith { "Mis" + "sing translation" }, it)
+			NotFirmament.json.encodeToStream(toDump.associateWith { "Mis" + "sing translation" }, it)
 		}
 	}
 
 	@JvmStatic
 	fun hookOnBeforeResourceReload(client: Minecraft): CompletableFuture<Void> {
-		val reloadFuture = if (TConfig.autoRebuildResources && Firmament.DEBUG && gradleDir != null) {
+		val reloadFuture = if (TConfig.autoRebuildResources && NotFirmament.DEBUG && gradleDir != null) {
 			val builder = ProcessBuilder("./gradlew", ":processResources")
 			builder.directory(gradleDir.toFile())
 			builder.inheritIO()
 			val process = builder.start()
-			MC.sendChat(Component.translatable("firmament.dev.resourcerebuild.start"))
+			MC.sendChat(Component.translatable("notfirmament.dev.resourcerebuild.start"))
 			val startTime = TimeMark.now()
 			process.toHandle().onExit().thenApply {
 				MC.sendChat(
 					Component.translatableEscape(
-						"firmament.dev.resourcerebuild.done",
+						"notfirmament.dev.resourcerebuild.done",
 						startTime.passedTime()
 					)
 				)

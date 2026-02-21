@@ -1,11 +1,11 @@
 
 
-package moe.nea.firmament.gui.config
+package moe.nea.notfirmament.gui.config
 
 import io.github.notenoughupdates.moulconfig.gui.component.TextComponent
 import kotlinx.serialization.json.JsonElement
-import moe.nea.firmament.gui.FirmButtonComponent
-import moe.nea.firmament.util.data.ManagedConfig
+import moe.nea.notfirmament.gui.FirmButtonComponent
+import moe.nea.notfirmament.util.data.ManagedConfig
 
 class ClickHandler(val config: ManagedConfig, val runnable: () -> Unit) : ManagedConfig.OptionHandler<Unit> {
     override fun toJson(element: Unit): JsonElement? {

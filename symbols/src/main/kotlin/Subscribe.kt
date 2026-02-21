@@ -1,5 +1,5 @@
 
-package moe.nea.firmament.annotations
+package moe.nea.notfirmament.annotations
 
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)

@@ -1,4 +1,4 @@
-package moe.nea.firmament.gui.config.storage
+package moe.nea.notfirmament.gui.config.storage
 
 import java.nio.file.Path
 import kotlin.io.path.copyTo
@@ -11,13 +11,13 @@ import kotlin.io.path.moveTo
 import kotlin.io.path.name
 import kotlin.io.path.nameWithoutExtension
 import kotlin.io.path.writeText
-import moe.nea.firmament.gui.config.storage.FirmamentConfigLoader.configFolder
-import moe.nea.firmament.gui.config.storage.FirmamentConfigLoader.configVersionFile
-import moe.nea.firmament.gui.config.storage.FirmamentConfigLoader.storageFolder
+import moe.nea.notfirmament.gui.config.storage.NotFirmamentConfigLoader.configFolder
+import moe.nea.notfirmament.gui.config.storage.NotFirmamentConfigLoader.configVersionFile
+import moe.nea.notfirmament.gui.config.storage.NotFirmamentConfigLoader.storageFolder
 
 object LegacyImporter {
 	val legacyConfigVersion = 995
-	val backupPath = configFolder.resolveSibling("firmament-legacy-config-${System.currentTimeMillis()}")
+	val backupPath = configFolder.resolveSibling("notfirmament-legacy-config-${System.currentTimeMillis()}")
 
 	fun copyIf(from: Path, to: Path) {
 		if (from.exists()) {
@@ -56,7 +56,7 @@ object LegacyImporter {
 				category.forEachDirectoryEntry { profile ->
 					copyIf(
 						profile,
-						FirmamentConfigLoader.profilePath
+						NotFirmamentConfigLoader.profilePath
 							.resolve(profile.nameWithoutExtension)
 							.resolve(category.name + ".json")
 					)

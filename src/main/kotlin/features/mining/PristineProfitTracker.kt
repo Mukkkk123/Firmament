@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.mining
+package moe.nea.notfirmament.features.mining
 
 import io.github.notenoughupdates.moulconfig.xml.Bind
 import org.joml.Vector2i
@@ -6,18 +6,18 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
 import kotlin.time.Duration.Companion.seconds
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.ProcessChatEvent
-import moe.nea.firmament.gui.hud.MoulConfigHud
-import moe.nea.firmament.util.BazaarPriceStrategy
-import moe.nea.firmament.util.FirmFormatters.formatCommas
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.StringUtil.parseIntWithComma
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.data.ProfileSpecificDataHolder
-import moe.nea.firmament.util.formattedString
-import moe.nea.firmament.util.useMatch
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.ProcessChatEvent
+import moe.nea.notfirmament.gui.hud.MoulConfigHud
+import moe.nea.notfirmament.util.BazaarPriceStrategy
+import moe.nea.notfirmament.util.FirmFormatters.formatCommas
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.StringUtil.parseIntWithComma
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.data.ProfileSpecificDataHolder
+import moe.nea.notfirmament.util.formattedString
+import moe.nea.notfirmament.util.useMatch
 
 object PristineProfitTracker {
 	val identifier: String
@@ -105,11 +105,11 @@ object PristineProfitTracker {
 		val moneyPerSecond = moneyHistogram.averagePer({ it }, 1.seconds)
 		if (collectionPerSecond == null || moneyPerSecond == null) return
 		ProfitHud.collectionCurrent = collectionPerSecond
-		ProfitHud.collectionText = Component.translatableEscape("firmament.pristine-profit.collection",
+		ProfitHud.collectionText = Component.translatableEscape("notfirmament.pristine-profit.collection",
 		                                                        formatCommas(collectionPerSecond * SECONDS_PER_HOUR,
 		                                                                     1)).formattedString()
 		ProfitHud.moneyCurrent = moneyPerSecond
-		ProfitHud.moneyText = Component.translatableEscape("firmament.pristine-profit.money",
+		ProfitHud.moneyText = Component.translatableEscape("notfirmament.pristine-profit.money",
 		                                                   formatCommas(moneyPerSecond * SECONDS_PER_HOUR, 1))
 			.formattedString()
 		val data = DConfig.data

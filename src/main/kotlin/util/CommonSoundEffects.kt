@@ -1,6 +1,6 @@
 
 
-package moe.nea.firmament.util
+package moe.nea.notfirmament.util
 
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.sounds.SoundEvent

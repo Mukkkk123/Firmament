@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.debug.itemeditor
+package moe.nea.notfirmament.features.debug.itemeditor
 
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.JsonArray
@@ -16,34 +16,34 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.nbt.StringTag
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.RestArgumentType
-import moe.nea.firmament.commands.get
-import moe.nea.firmament.commands.thenArgument
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.commands.thenLiteral
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.events.HandledScreenKeyPressedEvent
-import moe.nea.firmament.events.SlotRenderEvents
-import moe.nea.firmament.features.debug.DeveloperFeatures
-import moe.nea.firmament.features.debug.ExportedTestConstantMeta
-import moe.nea.firmament.features.debug.PowerUserTools
-import moe.nea.firmament.repo.RepoDownloadManager
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.util.LegacyTagParser
-import moe.nea.firmament.util.LegacyTagWriter.Companion.toLegacyString
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.focusedItemStack
-import moe.nea.firmament.util.mc.SNbtFormatter.Companion.toPrettyString
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.mc.loreAccordingToNbt
-import moe.nea.firmament.util.mc.toNbtList
-import moe.nea.firmament.util.render.drawGuiTexture
-import moe.nea.firmament.util.setSkyBlockId
-import moe.nea.firmament.util.skyBlockId
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.RestArgumentType
+import moe.nea.notfirmament.commands.get
+import moe.nea.notfirmament.commands.thenArgument
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.commands.thenLiteral
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.events.HandledScreenKeyPressedEvent
+import moe.nea.notfirmament.events.SlotRenderEvents
+import moe.nea.notfirmament.features.debug.DeveloperFeatures
+import moe.nea.notfirmament.features.debug.ExportedTestConstantMeta
+import moe.nea.notfirmament.features.debug.PowerUserTools
+import moe.nea.notfirmament.repo.RepoDownloadManager
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.util.LegacyTagParser
+import moe.nea.notfirmament.util.LegacyTagWriter.Companion.toLegacyString
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.focusedItemStack
+import moe.nea.notfirmament.util.mc.SNbtFormatter.Companion.toPrettyString
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.mc.loreAccordingToNbt
+import moe.nea.notfirmament.util.mc.toNbtList
+import moe.nea.notfirmament.util.render.drawGuiTexture
+import moe.nea.notfirmament.util.setSkyBlockId
+import moe.nea.notfirmament.util.skyBlockId
+import moe.nea.notfirmament.util.tr
 
 object ItemExporter {
 
@@ -54,7 +54,7 @@ object ItemExporter {
 		val fileName = json.jsonObject["internalname"]?.jsonPrimitive?.takeIf { it.isString }?.content
 		if (fileName == null) {
 			return tr(
-				"firmament.repoexport.nointernalname",
+				"notfirmament.repoexport.nointernalname",
 				"Could not find internal name to export for this item (null.json)"
 			)
 		}
@@ -62,7 +62,7 @@ object ItemExporter {
 		itemFile.createParentDirectories()
 		if (itemFile.exists()) {
 			val existing = try {
-				Firmament.json.decodeFromString<JsonObject>(itemFile.readText())
+				NotFirmament.json.decodeFromString<JsonObject>(itemFile.readText())
 			} catch (ex: Exception) {
 				ex.printStackTrace()
 				JsonObject(mapOf())
@@ -76,7 +76,7 @@ object ItemExporter {
 			}
 			json = JsonObject(mut)
 		}
-		val jsonFormatted = Firmament.twoSpaceJson.encodeToString(json)
+		val jsonFormatted = NotFirmament.twoSpaceJson.encodeToString(json)
 		itemFile.writeText(jsonFormatted)
 		val overlayFile = RepoDownloadManager.repoSavedLocation.resolve("itemsOverlay")
 			.resolve(ExportedTestConstantMeta.current.dataVersion.toString())
@@ -84,7 +84,7 @@ object ItemExporter {
 		overlayFile.createParentDirectories()
 		overlayFile.writeText(exporter.exportModernSnbt().toPrettyString())
 		return tr(
-			"firmament.repoexport.success",
+			"notfirmament.repoexport.success",
 			"Exported item to ${itemFile.relativeTo(RepoDownloadManager.repoSavedLocation)}${
 				exporter.warnings.joinToString(
 					""
@@ -105,9 +105,9 @@ object ItemExporter {
 	}
 
 	fun modifyJson(skyblockId: SkyblockId, modify: (JsonObject) -> JsonObject) {
-		val oldJson = Firmament.json.decodeFromString<JsonObject>(pathFor(skyblockId).readText())
+		val oldJson = NotFirmament.json.decodeFromString<JsonObject>(pathFor(skyblockId).readText())
 		val newJson = modify(oldJson)
-		pathFor(skyblockId).writeText(Firmament.twoSpaceJson.encodeToString(JsonObject(newJson)))
+		pathFor(skyblockId).writeText(NotFirmament.twoSpaceJson.encodeToString(JsonObject(newJson)))
 	}
 
 	fun appendRecipe(skyblockId: SkyblockId, recipe: JsonObject) {
@@ -147,7 +147,7 @@ object ItemExporter {
 							if (pathFor(itemid).notExists()) {
 								MC.sendChat(
 									tr(
-										"firmament.repo.export.relore.fail",
+										"notfirmament.repo.export.relore.fail",
 										"Could not find json file to relore for ${itemid}"
 									)
 								)
@@ -155,7 +155,7 @@ object ItemExporter {
 							fixLoreNbtFor(itemid)
 							MC.sendChat(
 								tr(
-									"firmament.repo.export.relore",
+									"notfirmament.repo.export.relore",
 									"Updated lore / display name for $itemid"
 								)
 							)
@@ -167,11 +167,11 @@ object ItemExporter {
 						var i = 0
 						val chunkSize = 100
 						val items = RepoManager.neuRepo.items.items.keys
-						Firmament.coroutineScope.launch {
+						NotFirmament.coroutineScope.launch {
 							items.chunked(chunkSize).forEach { key ->
 								MC.sendChat(
 									tr(
-										"firmament.repo.export.relore.progress",
+										"notfirmament.repo.export.relore.progress",
 										"Updated lore / display for ${i * chunkSize} / ${items.size}."
 									)
 								)
@@ -180,7 +180,7 @@ object ItemExporter {
 									fixLoreNbtFor(SkyblockId(it))
 								}
 							}
-							MC.sendChat(tr("firmament.repo.export.relore.alldone", "All lores updated."))
+							MC.sendChat(tr("notfirmament.repo.export.relore.alldone", "All lores updated."))
 						}
 					}
 				}
@@ -233,7 +233,7 @@ object ItemExporter {
 		}
 		if (!isExported)
 			event.context.drawGuiTexture(
-				Firmament.identifier("selected_pet_background"),
+				NotFirmament.identifier("selected_pet_background"),
 				event.slot.x, event.slot.y, 16, 16,
 			)
 	}
@@ -245,6 +245,6 @@ object ItemExporter {
 			it.setSkyBlockId(skyblockId)
 			extra(it) // LOL
 		})
-		MC.sendChat(tr("firmament.repo.export.stub", "Exported a stub item for $skyblockId"))
+		MC.sendChat(tr("notfirmament.repo.export.stub", "Exported a stub item for $skyblockId"))
 	}
 }

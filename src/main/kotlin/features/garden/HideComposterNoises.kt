@@ -1,14 +1,14 @@
-package moe.nea.firmament.features.garden
+package moe.nea.notfirmament.features.garden
 
 import net.minecraft.world.entity.animal.wolf.WolfSoundVariants
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundEvents
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.SoundReceiveEvent
-import moe.nea.firmament.util.SBData
-import moe.nea.firmament.util.SkyBlockIsland
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.SoundReceiveEvent
+import moe.nea.notfirmament.util.SBData
+import moe.nea.notfirmament.util.SkyBlockIsland
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
 
 object HideComposterNoises {
 	@Config

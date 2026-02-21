@@ -1,17 +1,17 @@
-package moe.nea.firmament.features.fixes
+package moe.nea.notfirmament.features.fixes
 
 import org.joml.Vector2i
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 import net.minecraft.client.Minecraft
 import net.minecraft.client.KeyMapping
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.HudRenderEvent
-import moe.nea.firmament.events.WorldKeyboardEvent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.HudRenderEvent
+import moe.nea.notfirmament.events.WorldKeyboardEvent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
+import moe.nea.notfirmament.util.tr
 
 object Fixes {
 	val identifier: String
@@ -55,14 +55,14 @@ object Fixes {
 		it.context.drawString(
 			MC.font, (
 				if (MC.player?.isSprinting == true) {
-					Component.translatable("firmament.fixes.auto-sprint.sprinting")
+					Component.translatable("notfirmament.fixes.auto-sprint.sprinting")
 				} else if (TConfig.autoSprint) {
 					if (!TConfig.autoSprintUnderWater && MC.player?.isInWater == true)
-						tr("firmament.fixes.auto-sprint.under-water", "In Water")
+						tr("notfirmament.fixes.auto-sprint.under-water", "In Water")
 					else
-						Component.translatable("firmament.fixes.auto-sprint.on")
+						Component.translatable("notfirmament.fixes.auto-sprint.on")
 				} else {
-					Component.translatable("firmament.fixes.auto-sprint.not-sprinting")
+					Component.translatable("notfirmament.fixes.auto-sprint.not-sprinting")
 				}
 				), 0, 0, -1, true
 		)

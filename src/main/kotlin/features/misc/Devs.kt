@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.misc
+package moe.nea.notfirmament.features.misc
 
 import java.util.UUID
 

@@ -1,13 +1,13 @@
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
-import moe.nea.firmament.keybindings.GenericInputAction
-import moe.nea.firmament.keybindings.InputModifiers
-import moe.nea.firmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.keybindings.GenericInputAction
+import moe.nea.notfirmament.keybindings.InputModifiers
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
 
-data class WorldKeyboardEvent(val action: GenericInputAction, val modifiers: InputModifiers) : FirmamentEvent.Cancellable() {
+data class WorldKeyboardEvent(val action: GenericInputAction, val modifiers: InputModifiers) : NotFirmamentEvent.Cancellable() {
 	fun matches(keyBinding: SavedKeyBinding, atLeast: Boolean = false): Boolean {
 		return keyBinding.matches(action, modifiers, atLeast)
 	}
 
-	companion object : FirmamentEventBus<WorldKeyboardEvent>()
+	companion object : NotFirmamentEventBus<WorldKeyboardEvent>()
 }

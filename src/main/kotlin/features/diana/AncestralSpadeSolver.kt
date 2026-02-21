@@ -1,23 +1,23 @@
-package moe.nea.firmament.features.diana
+package moe.nea.notfirmament.features.diana
 
 import kotlin.time.Duration.Companion.seconds
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.phys.Vec3
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.ParticleSpawnEvent
-import moe.nea.firmament.events.SoundReceiveEvent
-import moe.nea.firmament.events.WorldKeyboardEvent
-import moe.nea.firmament.events.WorldReadyEvent
-import moe.nea.firmament.events.WorldRenderLastEvent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.SBData
-import moe.nea.firmament.util.SkyBlockIsland
-import moe.nea.firmament.util.TimeMark
-import moe.nea.firmament.util.WarpUtil
-import moe.nea.firmament.util.render.RenderInWorldContext
-import moe.nea.firmament.util.skyBlockId
-import moe.nea.firmament.util.skyblock.SkyBlockItems
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.ParticleSpawnEvent
+import moe.nea.notfirmament.events.SoundReceiveEvent
+import moe.nea.notfirmament.events.WorldKeyboardEvent
+import moe.nea.notfirmament.events.WorldReadyEvent
+import moe.nea.notfirmament.events.WorldRenderLastEvent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.SBData
+import moe.nea.notfirmament.util.SkyBlockIsland
+import moe.nea.notfirmament.util.TimeMark
+import moe.nea.notfirmament.util.WarpUtil
+import moe.nea.notfirmament.util.render.RenderInWorldContext
+import moe.nea.notfirmament.util.skyBlockId
+import moe.nea.notfirmament.util.skyblock.SkyBlockItems
 
 object AncestralSpadeSolver {
 	var lastDing = TimeMark.farPast()

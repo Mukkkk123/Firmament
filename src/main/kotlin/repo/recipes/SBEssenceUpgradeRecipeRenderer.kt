@@ -1,17 +1,17 @@
-package moe.nea.firmament.repo.recipes
+package moe.nea.notfirmament.repo.recipes
 
 import io.github.moulberry.repo.NEURepository
 import me.shedaniel.math.Rectangle
 import net.minecraft.world.item.ItemStack
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.Identifier
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.repo.EssenceRecipeProvider
-import moe.nea.firmament.repo.ExpensiveItemCacheApi
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.repo.SBItemStack
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.repo.EssenceRecipeProvider
+import moe.nea.notfirmament.repo.ExpensiveItemCacheApi
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.repo.SBItemStack
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.tr
 
 object SBEssenceUpgradeRecipeRenderer : GenericRecipeRenderer<EssenceRecipeProvider.EssenceUpgradeRecipe> {
 	override fun render(
@@ -63,8 +63,8 @@ object SBEssenceUpgradeRecipeRenderer : GenericRecipeRenderer<EssenceRecipeProvi
 
 	@OptIn(ExpensiveItemCacheApi::class)
 	override val icon: ItemStack get() = SBItemStack(SkyblockId("ESSENCE_WITHER")).asImmutableItemStack()
-	override val title: Component = tr("firmament.category.essence", "Essence Upgrades")
-	override val identifier: Identifier = Firmament.identifier("essence_upgrade")
+	override val title: Component = tr("notfirmament.category.essence", "Essence Upgrades")
+	override val identifier: Identifier = NotFirmament.identifier("essence_upgrade")
 	override fun findAllRecipes(neuRepository: NEURepository): Iterable<EssenceRecipeProvider.EssenceUpgradeRecipe> {
 		return RepoManager.essenceRecipeProvider.recipes
 	}

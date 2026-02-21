@@ -1,4 +1,4 @@
-package moe.nea.firmament.commands
+package moe.nea.notfirmament.commands
 
 import com.mojang.brigadier.StringReader
 import com.mojang.brigadier.arguments.ArgumentType
@@ -11,11 +11,11 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.util.tr
 
 object DurationArgumentType : ArgumentType<Duration> {
 	val unknownTimeCode = DynamicCommandExceptionType { timeCode ->
-		tr("firmament.command-argument.duration.error",
+		tr("notfirmament.command-argument.duration.error",
 		   "Unknown time code '$timeCode'")
 	}
 

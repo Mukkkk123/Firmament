@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.inventory.buttons
+package moe.nea.notfirmament.features.inventory.buttons
 
 import io.github.notenoughupdates.moulconfig.common.IItemStack
 import io.github.notenoughupdates.moulconfig.gui.component.PanelComponent
@@ -19,11 +19,11 @@ import com.mojang.blaze3d.platform.InputConstants
 import net.minecraft.network.chat.Component
 import net.minecraft.util.Mth
 import net.minecraft.world.phys.Vec2
-import moe.nea.firmament.util.ClipboardUtils
-import moe.nea.firmament.util.FragmentGuiScreen
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MoulConfigUtils
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.util.ClipboardUtils
+import moe.nea.notfirmament.util.FragmentGuiScreen
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MoulConfigUtils
+import moe.nea.notfirmament.util.tr
 
 class InventoryButtonEditor(
 	val lastGuiRect: Rectangle,
@@ -80,7 +80,7 @@ class InventoryButtonEditor(
 			MultiLineTextWidget(
 				lastGuiRect.minX,
 				25,
-				Component.translatable("firmament.inventory-buttons.delete"),
+				Component.translatable("notfirmament.inventory-buttons.delete"),
 				MC.font
 			).setCentered(true).setMaxWidth(lastGuiRect.width)
 		)
@@ -88,12 +88,12 @@ class InventoryButtonEditor(
 			MultiLineTextWidget(
 				lastGuiRect.minX,
 				40,
-				Component.translatable("firmament.inventory-buttons.info"),
+				Component.translatable("notfirmament.inventory-buttons.info"),
 				MC.font
 			).setCentered(true).setMaxWidth(lastGuiRect.width)
 		)
 		addRenderableWidget(
-			Button.builder(Component.translatable("firmament.inventory-buttons.reset")) {
+			Button.builder(Component.translatable("notfirmament.inventory-buttons.reset")) {
 				val newButtons = InventoryButtonTemplates.loadTemplate("TkVVQlVUVE9OUy9bXQ==")
 				if (newButtons != null)
 					buttons = moveButtons(newButtons.map { it.copy(command = it.command?.removePrefix("/")) })
@@ -103,7 +103,7 @@ class InventoryButtonEditor(
 				.build()
 		)
 		addRenderableWidget(
-			Button.builder(Component.translatable("firmament.inventory-buttons.load-preset")) {
+			Button.builder(Component.translatable("notfirmament.inventory-buttons.load-preset")) {
 				val t = ClipboardUtils.getTextContents()
 				val newButtons = InventoryButtonTemplates.loadTemplate(t)
 				if (newButtons != null)
@@ -114,7 +114,7 @@ class InventoryButtonEditor(
 				.build()
 		)
 		addRenderableWidget(
-			Button.builder(Component.translatable("firmament.inventory-buttons.save-preset")) {
+			Button.builder(Component.translatable("notfirmament.inventory-buttons.save-preset")) {
 				ClipboardUtils.setTextContent(InventoryButtonTemplates.saveTemplate(buttons))
 			}
 				.pos(lastGuiRect.minX + 10, lastGuiRect.minY + 60)
@@ -122,7 +122,7 @@ class InventoryButtonEditor(
 				.build()
 		)
 		addRenderableWidget(
-			Button.builder(Component.translatable("firmament.inventory-buttons.simple-preset")) {
+			Button.builder(Component.translatable("notfirmament.inventory-buttons.simple-preset")) {
 				// Preset from NEU
 				// Credit: https://github.com/NotEnoughUpdates/NotEnoughUpdates/blob/9b1fcfebc646e9fb69f99006327faa3e734e5f51/src/main/resources/assets/notenoughupdates/invbuttons/presets.json#L900-L1348
 				val newButtons = InventoryButtonTemplates.loadTemplate(
@@ -136,7 +136,7 @@ class InventoryButtonEditor(
 				.build()
 		)
 		addRenderableWidget(
-			Button.builder(Component.translatable("firmament.inventory-buttons.all-warps-preset")) {
+			Button.builder(Component.translatable("notfirmament.inventory-buttons.all-warps-preset")) {
 				// Preset from NEU
 				// Credit: https://github.com/NotEnoughUpdates/NotEnoughUpdates/blob/9b1fcfebc646e9fb69f99006327faa3e734e5f51/src/main/resources/assets/notenoughupdates/invbuttons/presets.json#L1817-L2276
 				val newButtons = InventoryButtonTemplates.loadTemplate(
@@ -158,7 +158,7 @@ class InventoryButtonEditor(
 			if ((!button.anchorBottom && !button.anchorRight && button.x > 0 && button.y > 0)) {
 				MC.sendChat(
 					tr(
-						"firmament.inventory-buttons.button-moved",
+						"notfirmament.inventory-buttons.button-moved",
 						"One of your imported buttons intersects with the inventory and has been moved to the top left."
 					)
 				)

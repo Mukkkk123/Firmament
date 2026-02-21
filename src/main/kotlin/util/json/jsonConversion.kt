@@ -1,4 +1,4 @@
-package moe.nea.firmament.util.json
+package moe.nea.notfirmament.util.json
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement

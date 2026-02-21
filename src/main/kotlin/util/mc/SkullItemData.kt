@@ -1,6 +1,6 @@
 @file:UseSerializers(DashlessUUIDSerializer::class, InstantAsLongSerializer::class)
 
-package moe.nea.firmament.util.mc
+package moe.nea.notfirmament.util.mc
 
 import com.google.common.collect.Multimap
 import com.google.common.collect.Multimaps
@@ -16,11 +16,11 @@ import net.minecraft.core.component.DataComponents
 import net.minecraft.world.item.component.ResolvableProfile
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.util.Base64Util.padToValidBase64
-import moe.nea.firmament.util.assertTrueOr
-import moe.nea.firmament.util.json.DashlessUUIDSerializer
-import moe.nea.firmament.util.json.InstantAsLongSerializer
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.util.Base64Util.padToValidBase64
+import moe.nea.notfirmament.util.assertTrueOr
+import moe.nea.notfirmament.util.json.DashlessUUIDSerializer
+import moe.nea.notfirmament.util.json.InstantAsLongSerializer
 
 @Serializable
 data class MinecraftProfileTextureKt(
@@ -38,7 +38,7 @@ data class MinecraftTexturesPayloadKt(
 )
 
 fun createSkullTextures(textures: MinecraftTexturesPayloadKt): PropertyMap {
-	val json = Firmament.json.encodeToString(textures)
+	val json = NotFirmament.json.encodeToString(textures)
 	val encoded = java.util.Base64.getEncoder().encodeToString(json.encodeToByteArray())
 	return PropertyMap(
 		Multimaps.forMap(mapOf(propertyTextures to Property(propertyTextures, encoded)))
@@ -87,10 +87,10 @@ fun decodeProfileTextureProperty(property: Property): MinecraftTexturesPayloadKt
 			encodedF = encodedF.substring(0, encodedF.length - 1)
 		}
 		val json = java.util.Base64.getDecoder().decode(encodedF).decodeToString()
-		Firmament.json.decodeFromString<MinecraftTexturesPayloadKt>(json)
+		NotFirmament.json.decodeFromString<MinecraftTexturesPayloadKt>(json)
 	} catch (e: Exception) {
 		// Malformed profile data
-		if (Firmament.DEBUG)
+		if (NotFirmament.DEBUG)
 			e.printStackTrace()
 		null
 	}

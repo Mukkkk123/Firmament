@@ -1,9 +1,9 @@
 
 
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import net.minecraft.network.protocol.Packet
 
-data class OutgoingPacketEvent(val packet: Packet<*>) : FirmamentEvent.Cancellable() {
-    companion object : FirmamentEventBus<OutgoingPacketEvent>()
+data class OutgoingPacketEvent(val packet: Packet<*>) : NotFirmamentEvent.Cancellable() {
+    companion object : NotFirmamentEventBus<OutgoingPacketEvent>()
 }

@@ -1,10 +1,10 @@
-package moe.nea.firmament.features.diana
+package moe.nea.notfirmament.features.diana
 
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.AttackBlockEvent
-import moe.nea.firmament.events.UseBlockEvent
-import moe.nea.firmament.util.data.Config
-import moe.nea.firmament.util.data.ManagedConfig
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.AttackBlockEvent
+import moe.nea.notfirmament.events.UseBlockEvent
+import moe.nea.notfirmament.util.data.Config
+import moe.nea.notfirmament.util.data.ManagedConfig
 
 object DianaWaypoints {
 	val identifier get() = "diana"

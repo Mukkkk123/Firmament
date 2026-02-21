@@ -1,9 +1,9 @@
-package moe.nea.firmament.test.util.skyblock
+package moe.nea.notfirmament.test.util.skyblock
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import moe.nea.firmament.test.testutil.ItemResources
-import moe.nea.firmament.util.skyblock.TabListAPI
+import moe.nea.notfirmament.test.testutil.ItemResources
+import moe.nea.notfirmament.util.skyblock.TabListAPI
 
 class TabListAPITest {
 	val tablist = ItemResources.loadTablist("dungeon_hub")

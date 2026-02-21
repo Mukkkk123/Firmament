@@ -1,5 +1,5 @@
 
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.InteractionHand
@@ -13,6 +13,6 @@ data class AttackBlockEvent(
     val hand: InteractionHand,
     val blockPos: BlockPos,
     val direction: Direction
-) : FirmamentEvent.Cancellable() {
-    companion object : FirmamentEventBus<AttackBlockEvent>()
+) : NotFirmamentEvent.Cancellable() {
+    companion object : NotFirmamentEventBus<AttackBlockEvent>()
 }

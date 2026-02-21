@@ -1,4 +1,4 @@
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executor
@@ -8,8 +8,8 @@ import net.minecraft.server.packs.resources.PreparableReloadListener
 
 data class FinalizeResourceManagerEvent(
     val resourceManager: ReloadableResourceManager,
-) : FirmamentEvent() {
-	companion object : FirmamentEventBus<FinalizeResourceManagerEvent>()
+) : NotFirmamentEvent() {
+	companion object : NotFirmamentEventBus<FinalizeResourceManagerEvent>()
 
 	inline fun registerOnApply(name: String, crossinline function: () -> Unit) {
 		resourceManager.registerReloadListener(object : PreparableReloadListener {

@@ -1,4 +1,4 @@
-package moe.nea.firmament.util.net
+package moe.nea.notfirmament.util.net
 
 import java.io.InputStream
 import java.net.URI
@@ -13,7 +13,7 @@ import java.util.concurrent.Flow
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.serializer
-import moe.nea.firmament.Firmament
+import moe.nea.notfirmament.NotFirmament
 
 object HttpUtil {
 	val httpClient = HttpClient.newBuilder()
@@ -52,7 +52,7 @@ object HttpUtil {
 			val subscriber = inp.apply(it)
 			object : HttpResponse.BodySubscriber<T> {
 				override fun getBody(): CompletionStage<T> {
-					return subscriber.body.thenApply { Firmament.json.decodeFromStream(serializer, it) }
+					return subscriber.body.thenApply { NotFirmament.json.decodeFromStream(serializer, it) }
 				}
 
 				override fun onSubscribe(subscription: Flow.Subscription?) {
@@ -80,7 +80,7 @@ object HttpUtil {
 		return Request(
 			HttpRequest.newBuilder(url)
 				.GET()
-				.header("user-agent", "Firmament/${Firmament.version}")
+				.header("user-agent", "NotFirmament/${NotFirmament.version}")
 		)
 	}
 }

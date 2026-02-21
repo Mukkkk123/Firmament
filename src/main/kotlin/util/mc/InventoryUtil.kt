@@ -1,4 +1,4 @@
-package moe.nea.firmament.util.mc
+package moe.nea.notfirmament.util.mc
 
 import java.util.Spliterator
 import java.util.Spliterators

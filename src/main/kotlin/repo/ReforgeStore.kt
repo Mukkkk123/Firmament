@@ -1,4 +1,4 @@
-package moe.nea.firmament.repo
+package moe.nea.notfirmament.repo
 
 import com.google.gson.JsonElement
 import com.mojang.serialization.JsonOps
@@ -11,11 +11,11 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.serializer
 import net.minecraft.world.item.Item
 import net.minecraft.resources.ResourceKey
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.util.ReforgeId
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.json.KJsonOps
-import moe.nea.firmament.util.skyblock.ItemType
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.util.ReforgeId
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.json.KJsonOps
+import moe.nea.notfirmament.util.skyblock.ItemType
 
 object ReforgeStore : ExtraRecipeProvider, IReloadable {
 	override fun provideExtraRecipes(): Iterable<NEURecipe> {
@@ -117,7 +117,7 @@ object ReforgeStore : ExtraRecipeProvider, IReloadable {
 		val rawJson = json(JsonElement::class.java)
 		try {
 			val kJsonElement = JsonOps.INSTANCE.convertTo(KJsonOps.INSTANCE, rawJson)
-			return Firmament.json.decodeFromJsonElement(serializer, kJsonElement)
+			return NotFirmament.json.decodeFromJsonElement(serializer, kJsonElement)
 		} catch (ex: Exception) {
 			throw NEURepositoryException(path, "Could not decode kotlin JSON element", ex)
 		}

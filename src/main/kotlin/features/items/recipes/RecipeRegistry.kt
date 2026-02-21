@@ -1,22 +1,22 @@
-package moe.nea.firmament.features.items.recipes
+package moe.nea.notfirmament.features.items.recipes
 
 import com.mojang.blaze3d.platform.InputConstants
 import io.github.moulberry.repo.IReloadable
 import io.github.moulberry.repo.NEURepository
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.HandledScreenKeyPressedEvent
-import moe.nea.firmament.events.ReloadRegistrationEvent
-import moe.nea.firmament.keybindings.SavedKeyBinding
-import moe.nea.firmament.repo.RepoManager
-import moe.nea.firmament.repo.SBItemStack
-import moe.nea.firmament.repo.recipes.GenericRecipeRenderer
-import moe.nea.firmament.repo.recipes.SBCraftingRecipeRenderer
-import moe.nea.firmament.repo.recipes.SBEssenceUpgradeRecipeRenderer
-import moe.nea.firmament.repo.recipes.SBForgeRecipeRenderer
-import moe.nea.firmament.repo.recipes.SBReforgeRecipeRenderer
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.focusedItemStack
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.HandledScreenKeyPressedEvent
+import moe.nea.notfirmament.events.ReloadRegistrationEvent
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.repo.RepoManager
+import moe.nea.notfirmament.repo.SBItemStack
+import moe.nea.notfirmament.repo.recipes.GenericRecipeRenderer
+import moe.nea.notfirmament.repo.recipes.SBCraftingRecipeRenderer
+import moe.nea.notfirmament.repo.recipes.SBEssenceUpgradeRecipeRenderer
+import moe.nea.notfirmament.repo.recipes.SBForgeRecipeRenderer
+import moe.nea.notfirmament.repo.recipes.SBReforgeRecipeRenderer
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.focusedItemStack
 
 object RecipeRegistry {
 	val recipeTypes: List<GenericRecipeRenderer<*>> = listOf(

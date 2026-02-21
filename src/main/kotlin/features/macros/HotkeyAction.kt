@@ -1,9 +1,9 @@
-package moe.nea.firmament.features.macros
+package moe.nea.notfirmament.features.macros
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.util.MC
+import moe.nea.notfirmament.util.MC
 
 @Serializable
 sealed interface HotkeyAction {

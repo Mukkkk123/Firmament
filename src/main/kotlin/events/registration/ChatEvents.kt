@@ -1,4 +1,4 @@
-package moe.nea.firmament.events.registration
+package moe.nea.notfirmament.events.registration
 
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
@@ -7,17 +7,17 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback
 import net.fabricmc.fabric.api.event.player.UseItemCallback
 import net.minecraft.network.chat.Component
 import net.minecraft.world.InteractionResult
-import moe.nea.firmament.events.AllowChatEvent
-import moe.nea.firmament.events.AttackBlockEvent
-import moe.nea.firmament.events.JoinServerEvent
-import moe.nea.firmament.events.ModifyChatEvent
-import moe.nea.firmament.events.ProcessChatEvent
-import moe.nea.firmament.events.UseBlockEvent
-import moe.nea.firmament.events.UseItemEvent
+import moe.nea.notfirmament.events.AllowChatEvent
+import moe.nea.notfirmament.events.AttackBlockEvent
+import moe.nea.notfirmament.events.JoinServerEvent
+import moe.nea.notfirmament.events.ModifyChatEvent
+import moe.nea.notfirmament.events.ProcessChatEvent
+import moe.nea.notfirmament.events.UseBlockEvent
+import moe.nea.notfirmament.events.UseItemEvent
 
 private var lastReceivedMessage: Component? = null
 
-fun registerFirmamentEvents() {
+fun registerNotFirmamentEvents() {
 	ClientReceiveMessageEvents.ALLOW_CHAT.register(ClientReceiveMessageEvents.AllowChat { message, signedMessage, sender, params, receptionTimestamp ->
 		lastReceivedMessage = message
 		!ProcessChatEvent.publish(ProcessChatEvent(message, false)).cancelled

@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.macros
+package moe.nea.notfirmament.features.macros
 
 import me.shedaniel.math.Color
 import org.joml.Vector2f
@@ -8,20 +8,20 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
 import net.minecraft.client.gui.GuiGraphics
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.events.HudRenderEvent
-import moe.nea.firmament.events.TickEvent
-import moe.nea.firmament.events.WorldKeyboardEvent
-import moe.nea.firmament.events.WorldMouseMoveEvent
-import moe.nea.firmament.features.macros.RadialMenuViewer.RadialMenu
-import moe.nea.firmament.features.macros.RadialMenuViewer.RadialMenuOption
-import moe.nea.firmament.keybindings.SavedKeyBinding
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.render.RenderCircleProgress
-import moe.nea.firmament.util.render.drawLine
-import moe.nea.firmament.util.render.lerpAngle
-import moe.nea.firmament.util.render.wrapAngle
-import moe.nea.firmament.util.render.τ
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.events.HudRenderEvent
+import moe.nea.notfirmament.events.TickEvent
+import moe.nea.notfirmament.events.WorldKeyboardEvent
+import moe.nea.notfirmament.events.WorldMouseMoveEvent
+import moe.nea.notfirmament.features.macros.RadialMenuViewer.RadialMenu
+import moe.nea.notfirmament.features.macros.RadialMenuViewer.RadialMenuOption
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.render.RenderCircleProgress
+import moe.nea.notfirmament.util.render.drawLine
+import moe.nea.notfirmament.util.render.lerpAngle
+import moe.nea.notfirmament.util.render.wrapAngle
+import moe.nea.notfirmament.util.render.τ
 
 object RadialMenuViewer {
 	interface RadialMenu {

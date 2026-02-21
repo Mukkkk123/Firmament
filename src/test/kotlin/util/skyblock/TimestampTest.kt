@@ -1,12 +1,12 @@
-package moe.nea.firmament.test.util.skyblock
+package moe.nea.notfirmament.test.util.skyblock
 
 import java.time.Instant
 import java.time.ZonedDateTime
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import moe.nea.firmament.test.testutil.ItemResources
-import moe.nea.firmament.util.SBData
-import moe.nea.firmament.util.timestamp
+import moe.nea.notfirmament.test.testutil.ItemResources
+import moe.nea.notfirmament.util.SBData
+import moe.nea.notfirmament.util.timestamp
 
 class TimestampTest {
 

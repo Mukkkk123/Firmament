@@ -1,15 +1,15 @@
 
 
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.util.unformattedString
+import moe.nea.notfirmament.util.unformattedString
 
 /**
  * Behaves like [AllowChatEvent], but is triggered even when cancelled by other mods. Intended for data collection.
  * Make sure to subscribe to cancellable events as well when using.
  */
-data class ProcessChatEvent(val text: Component, val wasExternallyCancelled: Boolean) : FirmamentEvent.Cancellable() {
+data class ProcessChatEvent(val text: Component, val wasExternallyCancelled: Boolean) : NotFirmamentEvent.Cancellable() {
     val unformattedString = text.unformattedString
 
     val nameHeuristic: String? = run {
@@ -24,5 +24,5 @@ data class ProcessChatEvent(val text: Component, val wasExternallyCancelled: Boo
             cancelled = true
     }
 
-    companion object : FirmamentEventBus<ProcessChatEvent>()
+    companion object : NotFirmamentEventBus<ProcessChatEvent>()
 }

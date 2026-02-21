@@ -1,13 +1,13 @@
 
-package moe.nea.firmament.events.subscription
+package moe.nea.notfirmament.events.subscription
 
-import moe.nea.firmament.events.FirmamentEvent
-import moe.nea.firmament.events.FirmamentEventBus
+import moe.nea.notfirmament.events.NotFirmamentEvent
+import moe.nea.notfirmament.events.NotFirmamentEventBus
 
 
-data class Subscription<T : FirmamentEvent>(
+data class Subscription<T : NotFirmamentEvent>(
     val owner: Any,
     val invoke: (T) -> Unit,
-    val eventBus: FirmamentEventBus<T>,
+    val eventBus: NotFirmamentEventBus<T>,
     val methodName: String,
 )

@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.inventory.storageoverlay
+package moe.nea.notfirmament.features.inventory.storageoverlay
 
 import io.github.notenoughupdates.moulconfig.common.IMinecraft
 import io.github.notenoughupdates.moulconfig.gui.GuiContext
@@ -27,25 +27,25 @@ import net.minecraft.world.inventory.Slot
 import net.minecraft.network.chat.Component
 import net.minecraft.ChatFormatting
 import net.minecraft.resources.Identifier
-import moe.nea.firmament.events.SlotRenderEvents
-import moe.nea.firmament.gui.EmptyComponent
-import moe.nea.firmament.gui.FirmButtonComponent
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MoulConfigUtils.adopt
-import moe.nea.firmament.util.MoulConfigUtils.clickMCComponentInPlace
-import moe.nea.firmament.util.MoulConfigUtils.drawMCComponentInPlace
-import moe.nea.firmament.util.MoulConfigUtils.typeMCComponentInPlace
-import moe.nea.firmament.util.StringUtil.words
-import moe.nea.firmament.util.assertTrueOr
-import moe.nea.firmament.util.customgui.customGui
-import moe.nea.firmament.util.mc.FakeSlot
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.mc.loreAccordingToNbt
-import moe.nea.firmament.util.render.drawAlignedBox
-import moe.nea.firmament.util.render.drawGuiTexture
-import moe.nea.firmament.util.render.enableScissorWithoutTranslation
-import moe.nea.firmament.util.tr
-import moe.nea.firmament.util.unformattedString
+import moe.nea.notfirmament.events.SlotRenderEvents
+import moe.nea.notfirmament.gui.EmptyComponent
+import moe.nea.notfirmament.gui.FirmButtonComponent
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MoulConfigUtils.adopt
+import moe.nea.notfirmament.util.MoulConfigUtils.clickMCComponentInPlace
+import moe.nea.notfirmament.util.MoulConfigUtils.drawMCComponentInPlace
+import moe.nea.notfirmament.util.MoulConfigUtils.typeMCComponentInPlace
+import moe.nea.notfirmament.util.StringUtil.words
+import moe.nea.notfirmament.util.assertTrueOr
+import moe.nea.notfirmament.util.customgui.customGui
+import moe.nea.notfirmament.util.mc.FakeSlot
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.mc.loreAccordingToNbt
+import moe.nea.notfirmament.util.render.drawAlignedBox
+import moe.nea.notfirmament.util.render.drawGuiTexture
+import moe.nea.notfirmament.util.render.enableScissorWithoutTranslation
+import moe.nea.notfirmament.util.tr
+import moe.nea.notfirmament.util.unformattedString
 
 class StorageOverlayScreen : Screen(Component.literal("")) {
 
@@ -127,12 +127,12 @@ class StorageOverlayScreen : Screen(Component.literal("")) {
 
 	fun getMaxScroll() = lastRenderedInnerHeight.toFloat() - getScrollPanelInner().height
 
-	val playerInventorySprite = Identifier.parse("firmament:storageoverlay/player_inventory")
-	val upperBackgroundSprite = Identifier.parse("firmament:storageoverlay/upper_background")
-	val slotRowSprite = Identifier.parse("firmament:storageoverlay/storage_row")
-	val scrollbarBackground = Identifier.parse("firmament:storageoverlay/scroll_bar_background")
-	val scrollbarKnob = Identifier.parse("firmament:storageoverlay/scroll_bar_knob")
-	val controllerBackground = Identifier.parse("firmament:storageoverlay/storage_controls")
+	val playerInventorySprite = Identifier.parse("notfirmament:storageoverlay/player_inventory")
+	val upperBackgroundSprite = Identifier.parse("notfirmament:storageoverlay/upper_background")
+	val slotRowSprite = Identifier.parse("notfirmament:storageoverlay/storage_row")
+	val scrollbarBackground = Identifier.parse("notfirmament:storageoverlay/scroll_bar_background")
+	val scrollbarKnob = Identifier.parse("notfirmament:storageoverlay/scroll_bar_knob")
+	val controllerBackground = Identifier.parse("notfirmament:storageoverlay/storage_controls")
 
 	override fun onClose() {
 		isExiting = true
@@ -183,12 +183,12 @@ class StorageOverlayScreen : Screen(Component.literal("")) {
 	val guiContext = GuiContext(EmptyComponent())
 	private val knobStub = EmptyComponent()
 	val editButton = FirmButtonComponent(
-		TextComponent(tr("firmament.storage-overlay.edit-pages", "Edit Pages").string),
+		TextComponent(tr("notfirmament.storage-overlay.edit-pages", "Edit Pages").string),
 		action = ::editPages
 	)
 	val searchField = TextFieldComponent(
 		searchText, 100, GetSetter.constant(true),
-		tr("firmament.storage-overlay.search.suggestion", "Search...").string,
+		tr("notfirmament.storage-overlay.search.suggestion", "Search...").string,
 		IMinecraft.INSTANCE.defaultFontRenderer
 	)
 	val controlComponent = PanelComponent(

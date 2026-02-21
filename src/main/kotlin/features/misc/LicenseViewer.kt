@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.misc
+package moe.nea.notfirmament.features.misc
 
 import io.github.notenoughupdates.moulconfig.observer.ObservableList
 import io.github.notenoughupdates.moulconfig.xml.Bind
@@ -7,15 +7,15 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import kotlinx.serialization.json.decodeFromStream
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.util.ErrorUtil
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MoulConfigUtils
-import moe.nea.firmament.util.ScreenUtil
-import moe.nea.firmament.util.tr
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.util.ErrorUtil
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MoulConfigUtils
+import moe.nea.notfirmament.util.ScreenUtil
+import moe.nea.notfirmament.util.tr
 
 object LicenseViewer {
 	@Serializable
@@ -103,7 +103,7 @@ object LicenseViewer {
 
 	@OptIn(ExperimentalSerializationApi::class)
 	val licenses: LicenseList? = ErrorUtil.catch("Could not load licenses") {
-		Firmament.json.decodeFromStream<List<Software>?>(
+		NotFirmament.json.decodeFromStream<List<Software>?>(
 			javaClass.getResourceAsStream("/LICENSES-FIRMAMENT.json") ?: error("Could not find LICENSES-FIRMAMENT.json")
 		)?.let { LicenseList(it) }
 	}.orNull()
@@ -118,8 +118,8 @@ object LicenseViewer {
 		}.or {
 			MC.sendChat(
 				tr(
-					"firmament.licenses.notfound",
-					"Could not load licenses. Please check the Firmament source code for information directly."
+					"notfirmament.licenses.notfound",
+					"Could not load licenses. Please check the NotFirmament source code for information directly."
 				)
 			)
 		}

@@ -3,7 +3,7 @@
     "id": "notfirmament",
     "version": "${version}",
     "name": "NotFirmament",
-    "description": "Firmament powered by NEU",
+    "description": "NotFirmament powered by NEU",
     "authors": [
         {
             "name": "Linnea Gräf",
@@ -14,41 +14,41 @@
     ],
     "contact": {
         "discord": "https://discord.gg/64pFP94AWA",
-        "sources": "https://github.com/nea89o/Firmament",
-		"modrinth": "https://modrinth.com/mod/firmament"
+        "sources": "https://github.com/nea89o/NotFirmament",
+		"modrinth": "https://modrinth.com/mod/notfirmament"
     },
     "license": "GPL 3.0 or Later",
-    "accessWidener": "firmament.accesswidener",
-    "icon": "assets/firmament/logo.png",
+    "accessWidener": "notfirmament.accesswidener",
+    "icon": "assets/notfirmament/logo.png",
     "environment": "client",
     "entrypoints": {
         "main": [
-            "moe.nea.firmament.Firmament::onInitialize"
+            "moe.nea.notfirmament.NotFirmament::onInitialize"
         ],
         "mm_shedaniel:early_risers": [
-            "moe.nea.firmament.init.EarlyRiser"
+            "moe.nea.notfirmament.init.EarlyRiser"
         ],
         "client": [
-            "moe.nea.firmament.Firmament::onClientInitialize"
+            "moe.nea.notfirmament.NotFirmament::onClientInitialize"
         ],
         "rei_client": [
-            "moe.nea.firmament.compat.rei.FirmamentReiPlugin"
+            "moe.nea.notfirmament.compat.rei.NotFirmamentReiPlugin"
         ],
 		"rei_common": [
-			"moe.nea.firmament.compat.rei.FirmamentReiCommonPlugin"
+			"moe.nea.notfirmament.compat.rei.NotFirmamentReiCommonPlugin"
 		],
         "modmenu": [
-            "moe.nea.firmament.compat.modmenu.FirmamentModMenuPlugin"
+            "moe.nea.notfirmament.compat.modmenu.NotFirmamentModMenuPlugin"
         ],
 		"jade": [
-			"moe.nea.firmament.compat.jade.FirmamentJadePlugin"
+			"moe.nea.notfirmament.compat.jade.NotFirmamentJadePlugin"
 		],
         "jarvis": [
-            "moe.nea.firmament.jarvis.JarvisIntegration"
+            "moe.nea.notfirmament.jarvis.JarvisIntegration"
         ]
     },
     "mixins": [
-        "firmament.mixins.json"
+        "notfirmament.mixins.json"
     ],
     "depends": {
         "fabric-api": ">=${fabric_api_version}",

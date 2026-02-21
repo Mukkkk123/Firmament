@@ -1,6 +1,6 @@
 
 
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import net.minecraft.world.item.Item.TooltipContext
 import net.minecraft.world.item.ItemStack
@@ -9,6 +9,6 @@ import net.minecraft.network.chat.Component
 
 data class ItemTooltipEvent(
     val stack: ItemStack, val context: TooltipContext, val type: TooltipFlag, val lines: MutableList<Component>
-) : FirmamentEvent() {
-    companion object : FirmamentEventBus<ItemTooltipEvent>()
+) : NotFirmamentEvent() {
+    companion object : NotFirmamentEventBus<ItemTooltipEvent>()
 }

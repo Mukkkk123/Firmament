@@ -1,4 +1,4 @@
-package moe.nea.firmament.events
+package moe.nea.notfirmament.events
 
 import java.util.Objects
 import java.util.Optional
@@ -6,17 +6,17 @@ import kotlin.jvm.optionals.getOrNull
 import net.minecraft.core.component.DataComponents
 import net.minecraft.world.item.ItemStack
 import net.minecraft.resources.Identifier
-import moe.nea.firmament.util.collections.WeakCache
-import moe.nea.firmament.util.collections.WeakCache.CacheFunction
-import moe.nea.firmament.util.mc.IntrospectableItemModelManager
+import moe.nea.notfirmament.util.collections.WeakCache
+import moe.nea.notfirmament.util.collections.WeakCache.CacheFunction
+import moe.nea.notfirmament.util.mc.IntrospectableItemModelManager
 
 // TODO: assert an order on these events
 data class CustomItemModelEvent(
     val itemStack: ItemStack,
     val itemModelManager: IntrospectableItemModelManager,
     var overrideModel: Identifier? = null,
-) : FirmamentEvent() {
-	companion object : FirmamentEventBus<CustomItemModelEvent>() {
+) : NotFirmamentEvent() {
+	companion object : NotFirmamentEventBus<CustomItemModelEvent>() {
 		val weakCache =
 			object : WeakCache<ItemStack, IntrospectableItemModelManager, Optional<Identifier>>("ItemModelIdentifier") {
 				override fun mkRef(
@@ -64,7 +64,7 @@ data class CustomItemModelEvent(
 	}
 
 	fun overrideIfExists(overrideModel: Identifier) {
-		if (itemModelManager.hasModel_firmament(overrideModel))
+		if (itemModelManager.hasModel_notfirmament(overrideModel))
 			this.overrideModel = overrideModel
 	}
 

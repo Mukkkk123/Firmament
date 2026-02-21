@@ -1,8 +1,8 @@
-package moe.nea.firmament.events.subscription
+package moe.nea.notfirmament.events.subscription
 
 import java.util.ServiceLoader
 import kotlin.streams.asSequence
-import moe.nea.firmament.Firmament
+import moe.nea.notfirmament.NotFirmament
 
 interface SubscriptionList {
     fun provideSubscriptions(addSubscription: (Subscription<*>) -> Unit)
@@ -15,7 +15,7 @@ interface SubscriptionList {
                 .mapNotNull {
                     kotlin.runCatching { it.get() }
                         .getOrElse { ex ->
-                            Firmament.logger.error("Could not load subscriptions from ${it.type()}", ex)
+                            NotFirmament.logger.error("Could not load subscriptions from ${it.type()}", ex)
                             null
                         }
                 }

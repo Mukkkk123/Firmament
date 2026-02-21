@@ -1,7 +1,7 @@
-package moe.nea.firmament.util.mc
+package moe.nea.notfirmament.util.mc
 
-import moe.nea.firmament.Firmament
+import moe.nea.notfirmament.NotFirmament
 
 object CommonTextures {
-	fun genericWidget() = (Firmament.identifier("generic_vanilla_widget"))
+	fun genericWidget() = (NotFirmament.identifier("generic_vanilla_widget"))
 }

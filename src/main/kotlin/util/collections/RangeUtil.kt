@@ -1,4 +1,4 @@
-package moe.nea.firmament.util.collections
+package moe.nea.notfirmament.util.collections
 
 import kotlin.math.floor
 

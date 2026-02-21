@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.items.recipes
+package moe.nea.notfirmament.features.items.recipes
 
 import java.util.Optional
 import me.shedaniel.math.Dimension
@@ -10,18 +10,18 @@ import net.minecraft.network.chat.Component
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.TooltipFlag
-import moe.nea.firmament.api.v1.FirmamentItemWidget
-import moe.nea.firmament.events.ItemTooltipEvent
-import moe.nea.firmament.keybindings.SavedKeyBinding
-import moe.nea.firmament.repo.ExpensiveItemCacheApi
-import moe.nea.firmament.repo.SBItemStack
-import moe.nea.firmament.repo.recipes.RecipeLayouter
-import moe.nea.firmament.util.ErrorUtil
-import moe.nea.firmament.util.FirmFormatters.shortFormat
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.darkGrey
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.mc.loreAccordingToNbt
+import moe.nea.notfirmament.api.v1.NotFirmamentItemWidget
+import moe.nea.notfirmament.events.ItemTooltipEvent
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.repo.ExpensiveItemCacheApi
+import moe.nea.notfirmament.repo.SBItemStack
+import moe.nea.notfirmament.repo.recipes.RecipeLayouter
+import moe.nea.notfirmament.util.ErrorUtil
+import moe.nea.notfirmament.util.FirmFormatters.shortFormat
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.darkGrey
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.mc.loreAccordingToNbt
 
 class ItemSlotWidget(
 	point: Point,
@@ -29,7 +29,7 @@ class ItemSlotWidget(
 	val slotKind: RecipeLayouter.SlotKind
 ) : RecipeWidget(),
 	RecipeLayouter.CyclingItemSlot,
-	FirmamentItemWidget {
+	NotFirmamentItemWidget {
 	override var position = point
 	override val size get() = Dimension(16, 16)
 	val itemRect get() = Rectangle(position, Dimension(16, 16))
@@ -126,8 +126,8 @@ class ItemSlotWidget(
 		index = index.coerceIn(content.indices)
 	}
 
-	override fun getPlacement(): FirmamentItemWidget.Placement {
-		return FirmamentItemWidget.Placement.RECIPE_SCREEN
+	override fun getPlacement(): NotFirmamentItemWidget.Placement {
+		return NotFirmamentItemWidget.Placement.RECIPE_SCREEN
 	}
 
 	@OptIn(ExpensiveItemCacheApi::class)

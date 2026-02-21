@@ -1,4 +1,4 @@
-package moe.nea.firmament.features.mining
+package moe.nea.notfirmament.features.mining
 
 import me.shedaniel.math.Rectangle
 import kotlinx.serialization.Serializable
@@ -12,27 +12,27 @@ import net.minecraft.world.item.Items
 import net.minecraft.world.inventory.ChestMenu
 import net.minecraft.world.inventory.Slot
 import net.minecraft.network.chat.Component
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.events.ChestInventoryUpdateEvent
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.events.ScreenChangeEvent
-import moe.nea.firmament.events.SlotRenderEvents
-import moe.nea.firmament.mixins.accessor.AccessorHandledScreen
-import moe.nea.firmament.util.ClipboardUtils
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.TemplateUtil
-import moe.nea.firmament.util.TimeMark
-import moe.nea.firmament.util.accessors.castAccessor
-import moe.nea.firmament.util.customgui.CustomGui
-import moe.nea.firmament.util.customgui.customGui
-import moe.nea.firmament.util.mc.CommonTextures
-import moe.nea.firmament.util.mc.SlotUtils.clickRightMouseButton
-import moe.nea.firmament.util.mc.displayNameAccordingToNbt
-import moe.nea.firmament.util.render.drawGuiTexture
-import moe.nea.firmament.util.unformattedString
-import moe.nea.firmament.util.useMatch
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.events.ChestInventoryUpdateEvent
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.events.ScreenChangeEvent
+import moe.nea.notfirmament.events.SlotRenderEvents
+import moe.nea.notfirmament.mixins.accessor.AccessorHandledScreen
+import moe.nea.notfirmament.util.ClipboardUtils
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.TemplateUtil
+import moe.nea.notfirmament.util.TimeMark
+import moe.nea.notfirmament.util.accessors.castAccessor
+import moe.nea.notfirmament.util.customgui.CustomGui
+import moe.nea.notfirmament.util.customgui.customGui
+import moe.nea.notfirmament.util.mc.CommonTextures
+import moe.nea.notfirmament.util.mc.SlotUtils.clickRightMouseButton
+import moe.nea.notfirmament.util.mc.displayNameAccordingToNbt
+import moe.nea.notfirmament.util.render.drawGuiTexture
+import moe.nea.notfirmament.util.unformattedString
+import moe.nea.notfirmament.util.useMatch
 
 object HotmPresets {
 	val SHARE_PREFIX = "FIRMHOTM/"
@@ -85,11 +85,11 @@ object HotmPresets {
 			drawContext.drawCenteredString(
 				MC.font,
 				if (hasAll) {
-					Component.translatable("firmament.hotmpreset.copied")
+					Component.translatable("notfirmament.hotmpreset.copied")
 				} else if (!hasScrolled) {
-					Component.translatable("firmament.hotmpreset.scrollprompt")
+					Component.translatable("notfirmament.hotmpreset.scrollprompt")
 				} else {
-					Component.translatable("firmament.hotmpreset.scrolled")
+					Component.translatable("notfirmament.hotmpreset.scrolled")
 				},
 				bounds.centerX,
 				bounds.centerY - 5,
@@ -126,10 +126,10 @@ object HotmPresets {
 				300, 200
 			)
 			val screen = screen.castAccessor()
-			screen.x_Firmament = bounds.x
-			screen.y_Firmament = bounds.y
-			screen.backgroundWidth_Firmament = bounds.width
-			screen.backgroundHeight_Firmament = bounds.height
+			screen.x_NotFirmament = bounds.x
+			screen.y_NotFirmament = bounds.y
+			screen.backgroundWidth_NotFirmament = bounds.width
+			screen.backgroundHeight_NotFirmament = bounds.height
 		}
 
 		override fun moveSlot(slot: Slot) {
@@ -190,7 +190,7 @@ object HotmPresets {
 		if (hotmInventoryName == MC.screenName
 			&& event.slot.item.displayNameAccordingToNbt.unformattedString in highlightedPerks
 		) {
-			event.highlight((Firmament.identifier("hotm_perk_preset")))
+			event.highlight((NotFirmament.identifier("hotm_perk_preset")))
 		}
 	}
 
@@ -200,7 +200,7 @@ object HotmPresets {
 			thenExecute {
 				hotmCommandSent = TimeMark.now()
 				MC.sendCommand("hotm")
-				source.sendFeedback(Component.translatable("firmament.hotmpreset.openinghotm"))
+				source.sendFeedback(Component.translatable("notfirmament.hotmpreset.openinghotm"))
 			}
 		}
 		event.subcommand("importhotm") {
@@ -208,10 +208,10 @@ object HotmPresets {
 				val template =
 					TemplateUtil.maybeDecodeTemplate<HotmPreset>(SHARE_PREFIX, ClipboardUtils.getTextContents())
 				if (template == null) {
-					source.sendFeedback(Component.translatable("firmament.hotmpreset.failedimport"))
+					source.sendFeedback(Component.translatable("notfirmament.hotmpreset.failedimport"))
 				} else {
 					highlightedPerks = template.perks.mapTo(mutableSetOf()) { it.perkName }
-					source.sendFeedback(Component.translatable("firmament.hotmpreset.okayimport"))
+					source.sendFeedback(Component.translatable("notfirmament.hotmpreset.okayimport"))
 					MC.sendCommand("hotm")
 				}
 			}

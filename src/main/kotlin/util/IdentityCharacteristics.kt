@@ -1,6 +1,6 @@
 
 
-package moe.nea.firmament.util
+package moe.nea.notfirmament.util
 
 class IdentityCharacteristics<T>(val value: T) {
     override fun equals(other: Any?): Boolean {

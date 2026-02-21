@@ -1,19 +1,19 @@
-package moe.nea.firmament.features.macros
+package moe.nea.notfirmament.features.macros
 
 import io.github.notenoughupdates.moulconfig.common.text.StructuredText
 import io.github.notenoughupdates.moulconfig.gui.CloseEventListener
 import io.github.notenoughupdates.moulconfig.observer.ObservableList
 import io.github.notenoughupdates.moulconfig.platform.MoulConfigPlatform
 import io.github.notenoughupdates.moulconfig.xml.Bind
-import moe.nea.firmament.annotations.Subscribe
-import moe.nea.firmament.commands.thenExecute
-import moe.nea.firmament.events.CommandEvent
-import moe.nea.firmament.gui.config.AllConfigsGui.toObservableList
-import moe.nea.firmament.gui.config.KeyBindingStateManager
-import moe.nea.firmament.keybindings.SavedKeyBinding
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.MoulConfigUtils
-import moe.nea.firmament.util.ScreenUtil
+import moe.nea.notfirmament.annotations.Subscribe
+import moe.nea.notfirmament.commands.thenExecute
+import moe.nea.notfirmament.events.CommandEvent
+import moe.nea.notfirmament.gui.config.AllConfigsGui.toObservableList
+import moe.nea.notfirmament.gui.config.KeyBindingStateManager
+import moe.nea.notfirmament.keybindings.SavedKeyBinding
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.MoulConfigUtils
+import moe.nea.notfirmament.util.ScreenUtil
 
 class MacroUI {
 
@@ -185,7 +185,7 @@ class MacroUI {
 			actions.add(
 				ActionEditor(
 					ComboKeyAction(
-						CommandAction("ac Hello from a Firmament Hotkey"),
+						CommandAction("ac Hello from a NotFirmament Hotkey"),
 						listOf()
 					),
 					this

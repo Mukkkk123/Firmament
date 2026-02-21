@@ -1,4 +1,4 @@
-package moe.nea.firmament.test.testutil
+package moe.nea.notfirmament.test.testutil
 
 import com.mojang.datafixers.DSL
 import com.mojang.serialization.Dynamic
@@ -15,10 +15,10 @@ import net.minecraft.nbt.TagParser
 import net.minecraft.resources.RegistryOps
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.ComponentSerialization
-import moe.nea.firmament.features.debug.ExportedTestConstantMeta
-import moe.nea.firmament.test.FirmTestBootstrap
-import moe.nea.firmament.util.MC
-import moe.nea.firmament.util.mc.MCTabListAPI
+import moe.nea.notfirmament.features.debug.ExportedTestConstantMeta
+import moe.nea.notfirmament.test.FirmTestBootstrap
+import moe.nea.notfirmament.util.MC
+import moe.nea.notfirmament.util.mc.MCTabListAPI
 
 object ItemResources {
 	init {
@@ -46,7 +46,7 @@ object ItemResources {
 		nbtCompound.remove("source")
 		if (source.isPresent) {
 			val wrappedNbtSource = if (typ == References.TEXT_COMPONENT && source.get().dataVersion < 4325) {
-				// Per 1.21.5 text components are wrapped in a string, which firmament unwrapped in the snbt files
+				// Per 1.21.5 text components are wrapped in a string, which notfirmament unwrapped in the snbt files
 				StringTag.valueOf(
 					NbtOps.INSTANCE.convertTo(JsonOps.INSTANCE, nbtCompound)
 						.toString()

@@ -1,4 +1,4 @@
-package moe.nea.firmament.repo
+package moe.nea.notfirmament.repo
 
 import org.apache.logging.log4j.LogManager
 import kotlinx.coroutines.async
@@ -9,14 +9,14 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlin.time.Duration.Companion.minutes
-import moe.nea.firmament.Firmament
-import moe.nea.firmament.apis.CollectionResponse
-import moe.nea.firmament.apis.CollectionSkillData
-import moe.nea.firmament.util.SkyblockId
-import moe.nea.firmament.util.net.HttpUtil
+import moe.nea.notfirmament.NotFirmament
+import moe.nea.notfirmament.apis.CollectionResponse
+import moe.nea.notfirmament.apis.CollectionSkillData
+import moe.nea.notfirmament.util.SkyblockId
+import moe.nea.notfirmament.util.net.HttpUtil
 
 object HypixelStaticData {
-	private val logger = LogManager.getLogger("Firmament.HypixelStaticData")
+	private val logger = LogManager.getLogger("NotFirmament.HypixelStaticData")
 	private val moulberryBaseUrl = "https://moulberry.codes"
 	private val hypixelApiBaseUrl = "https://api.hypixel.net"
 	var lowestBin: Map<SkyblockId, Double> = mapOf()
@@ -71,18 +71,18 @@ object HypixelStaticData {
 	}
 
 	fun spawnDataCollectionLoop() {
-		Firmament.coroutineScope.launch {
+		NotFirmament.coroutineScope.launch {
 			logger.info("Updating collection data")
 			updateCollectionData()
 		}
-		Firmament.coroutineScope.launch {
+		NotFirmament.coroutineScope.launch {
 			while (true) {
 				logger.info("Updating NEU prices")
 				fetchPricesFromMoulberry()
 				delay(5.minutes)
 			}
 		}
-		Firmament.coroutineScope.launch {
+		NotFirmament.coroutineScope.launch {
 			while (true) {
 				logger.info("Updating bazaar prices")
 				fetchBazaarPrices()
